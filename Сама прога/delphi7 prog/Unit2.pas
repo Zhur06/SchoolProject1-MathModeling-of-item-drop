@@ -38,6 +38,8 @@ end;
 procedure TForm2.Edit1Change(Sender: TObject);
 begin
   h := StrToInt(Edit1.Text);
+  if h = 5 then
+    Form2.Repaint;
 end;
 
 end.
