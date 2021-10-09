@@ -1,8 +1,8 @@
 object ChildForm: TChildForm
-  Left = 552
-  Top = 301
-  Width = 845
-  Height = 452
+  Left = 415
+  Top = 214
+  Width = 674
+  Height = 418
   Caption = 'ChildForm'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,4 +17,14 @@ object ChildForm: TChildForm
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
+  object PaintBox1: TPaintBox
+    Left = 0
+    Top = 0
+    Width = 658
+    Height = 379
+    Align = alClient
+    Color = clSkyBlue
+    ParentColor = False
+    OnPaint = PaintBox1Paint
+  end
 end

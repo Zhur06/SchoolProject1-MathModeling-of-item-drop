@@ -2,13 +2,14 @@ program Project1;
 
 uses
   Forms,
-  MainUnit in 'MainUnit.pas' {Form1},
-  ChildUnit in 'ChildUnit.pas' {ChildForm};
+  MainUnit in 'MainUnit.pas' {MainForm},
+  ChildUnit in 'ChildUnit.pas' {ChildForm},
+  ChildUnit2 in 'ChildUnit2.pas' {ChildForm2};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TMainForm, MainForm);
   Application.Run;
 end.

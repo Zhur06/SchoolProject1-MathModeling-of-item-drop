@@ -7,12 +7,15 @@ uses
   Dialogs, Menus;
 
 type
-  TForm1 = class(TForm)
+  TMainForm = class(TForm)
     MainMenu1: TMainMenu;
     N1: TMenuItem;
     N2: TMenuItem;
     h1: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
     procedure h1Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -20,17 +23,22 @@ type
   end;
 
 var
-  Form1: TForm1;
+  MainForm: TMainForm;
 
 implementation
 
-uses ChildUnit;
+uses ChildUnit, ChildUnit2;
 
 {$R *.dfm}
 
-procedure TForm1.h1Click(Sender: TObject);
+procedure TMainForm.h1Click(Sender: TObject);
 begin
   TChildForm.Create(Self);
+end;
+
+procedure TMainForm.N3Click(Sender: TObject);
+begin
+  TChildForm2.Create(Self);
 end;
 
 end.
