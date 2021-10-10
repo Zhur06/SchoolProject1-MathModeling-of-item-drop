@@ -25,5 +25,6 @@ object ChildForm: TChildForm
     Align = alClient
     Color = clSkyBlue
     ParentColor = False
+    OnPaint = PaintBox1Paint
   end
 end
