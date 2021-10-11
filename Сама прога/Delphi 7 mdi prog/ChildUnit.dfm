@@ -4,7 +4,7 @@ object ChildForm: TChildForm
   Width = 674
   Height = 418
   Caption = 'ChildForm'
-  Color = clBtnFace
+  Color = clBtnHighlight
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -23,8 +23,7 @@ object ChildForm: TChildForm
     Width = 658
     Height = 379
     Align = alClient
-    Color = clSkyBlue
+    Color = clBtnHighlight
     ParentColor = False
-    OnPaint = PaintBox1Paint
   end
 end

@@ -4,7 +4,7 @@ object ChildForm2: TChildForm2
   Width = 242
   Height = 168
   Caption = 'ChildForm2'
-  Color = clBtnFace
+  Color = clBtnHighlight
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -21,7 +21,7 @@ object ChildForm2: TChildForm2
     Left = 0
     Top = 0
     Width = 225
-    Height = 49
+    Height = 21
     TabOrder = 0
     Text = 'Type here your height'
   end

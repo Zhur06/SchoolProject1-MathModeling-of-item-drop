@@ -17,13 +17,13 @@ type
   private
     { Private declarations }
   public
+  t: integer;
     { Public declarations }
   end;
 
 var
   ChildForm2: TChildForm2;
   A: Arr;
-  t: integer;
 
 implementation
 
@@ -45,9 +45,19 @@ begin
   end;
   h := StrToInt(str);
 
-  A := ChildForm.fillArrayOfV(h, 10);
+  ChildForm2.t := 0;
+  setlength(A, 1);
+  A[t][1] := 0;
+  A[t][2] := 0;
+  While A[t][2] < h do
+  begin
+    t := t + 1;
 
+    SetLength(A, length(A) + 1);
 
+    A[t][1] := t * 10;
+    A[t][2] := A[t - 1][2] + A[t][1];
+  end;
 end;
 
 procedure TChildForm2.FormClose(Sender: TObject; var Action: TCloseAction);

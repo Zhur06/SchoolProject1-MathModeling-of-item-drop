@@ -38,7 +38,7 @@ end;
 
 procedure TMainForm.N3Click(Sender: TObject);
 begin
-  TChildForm2.Create(Self);
+  ChildForm2 := TChildForm2.Create(Self);
 end;
 
 end.
