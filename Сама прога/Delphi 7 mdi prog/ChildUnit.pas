@@ -17,7 +17,6 @@ type
   private
     { Private declarations }
   public
-    h: integer;
     t: integer;
     A: Arr;
     { Public declarations }
@@ -30,7 +29,7 @@ var
 
 implementation
 
-uses ChildUnit2, IniFiles;
+uses ChildUnit2, MainUnit, IniFiles;
 
 {$R *.dfm}
 
@@ -65,7 +64,7 @@ begin
   setlength(ChildForm.A, 1);
   ChildForm.A[ChildForm.t][1] := 0;
   ChildForm.A[ChildForm.t][2] := 0;
-  While ChildForm.A[ChildForm.t][2] < h do
+  While ChildForm.A[ChildForm.t][2] < MainForm.h do
   begin
     ChildForm.t := ChildForm.t + 1;
 
@@ -86,5 +85,6 @@ begin
         LineTo(counter, Round(Height - A[counter div (Width div t) + 1][1] * (Height div round(A[t][1]))));
     end;
   end;
+end;
 end;
 end.

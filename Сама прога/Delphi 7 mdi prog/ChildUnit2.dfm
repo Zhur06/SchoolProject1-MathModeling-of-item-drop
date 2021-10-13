@@ -1,6 +1,6 @@
 object ChildForm2: TChildForm2
-  Left = 1165
-  Top = 240
+  Left = 1637
+  Top = 338
   Width = 242
   Height = 168
   Caption = 'ChildForm2'

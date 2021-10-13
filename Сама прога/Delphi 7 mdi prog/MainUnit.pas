@@ -19,6 +19,7 @@ type
   private
     { Private declarations }
   public
+    h: integer;
     { Public declarations }
   end;
 

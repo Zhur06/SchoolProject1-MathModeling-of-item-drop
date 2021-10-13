@@ -80,8 +80,6 @@ begin
 
     MoveTo(0, Height);
 
-    t := ChildForm2.t;
-
     For counter := 0 to Width do
     begin
       if counter div (Width div t) + 2 <= length(A) then

@@ -27,7 +27,7 @@ var
 
 implementation
 
-uses ChildUnit;
+uses ChildUnit, MainUnit;
 
 //uses ChildUnit;
 
@@ -45,7 +45,7 @@ begin
       EXIT;
     end;
   end;
-  ChildForm.h := StrToInt(str);
+  MainForm.h := StrToInt(str);
   end;
 //end;
 

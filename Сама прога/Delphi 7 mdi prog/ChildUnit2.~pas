@@ -27,6 +27,8 @@ var
 
 implementation
 
+uses ChildUnit;
+
 //uses ChildUnit;
 
 {$R *.dfm}
@@ -45,7 +47,7 @@ begin
   end;
   ChildForm.h := StrToInt(str);
   end;
-end;
+//end;
 
 procedure TChildForm2.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
