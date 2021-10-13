@@ -17,7 +17,7 @@ type
   private
     { Private declarations }
   public
-  t: integer;
+
     { Public declarations }
   end;
 
@@ -29,10 +29,12 @@ implementation
 
 uses ChildUnit;
 
+//uses ChildUnit;
+
 {$R *.dfm}
 
 procedure TChildForm2.Button1Click(Sender: TObject);
-var str: string; c, h: integer;
+var str: string; c: integer;
 begin
   str := Edit1.Text;
   for c:=1 to length(str) do
@@ -43,22 +45,9 @@ begin
       EXIT;
     end;
   end;
-  h := StrToInt(str);
-
-  ChildForm2.t := 0;
-  setlength(A, 1);
-  A[t][1] := 0;
-  A[t][2] := 0;
-  While A[t][2] < h do
-  begin
-    t := t + 1;
-
-    SetLength(A, length(A) + 1);
-
-    A[t][1] := t * 10;
-    A[t][2] := A[t - 1][2] + A[t][1];
+  ChildForm.h := StrToInt(str);
   end;
-end;
+//end;
 
 procedure TChildForm2.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

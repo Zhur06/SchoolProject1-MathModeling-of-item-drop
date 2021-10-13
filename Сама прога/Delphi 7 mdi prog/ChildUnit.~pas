@@ -17,6 +17,9 @@ type
   private
     { Private declarations }
   public
+    h: integer;
+    t: integer;
+    A: Arr;
     { Public declarations }
   end;
 
@@ -24,8 +27,7 @@ type
 
 var
   ChildForm: TChildForm;
-  A: Arr;
-  t: integer;
+
 implementation
 
 uses ChildUnit2, IniFiles;
@@ -59,6 +61,19 @@ end;
 procedure TChildForm.PaintBox1Paint(Sender: TObject);
 var counter: integer;
 begin
+  ChildForm.t := 0;
+  setlength(ChildForm.A, 1);
+  ChildForm.A[ChildForm.t][1] := 0;
+  ChildForm.A[ChildForm.t][2] := 0;
+  While ChildForm.A[ChildForm.t][2] < h do
+  begin
+    ChildForm.t := ChildForm.t + 1;
+
+    SetLength(ChildForm.A, length(ChildForm.A) + 1);
+
+    ChildForm.A[ChildForm.t][1] := ChildForm.t * 10;
+    ChildForm.A[ChildForm.t][2] := ChildForm.A[ChildForm.t - 1][2] + ChildForm.A[ChildForm.t][1];
+
   With PaintBox1, canvas do
   begin
     Brush.Color := clBlack;
