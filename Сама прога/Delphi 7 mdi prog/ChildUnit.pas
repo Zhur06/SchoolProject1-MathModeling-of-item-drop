@@ -12,8 +12,10 @@ type
   TChildForm = class(TForm)
     PaintBox1: TPaintBox;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-   // Function fillArrayOfV(h, g:integer):Arr;
     procedure PaintBox1Paint(Sender: TObject);
+    // procedure FormClose(Sender: TObject; var Action: TCloseAction);
+   // Function fillArrayOfV(h, g:integer):Arr;
+    //procedure PaintBox1Paint(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,62 +31,53 @@ var
 
 implementation
 
-uses ChildUnit2, MainUnit, IniFiles;
+uses MainUnit, IniFiles;
 
 {$R *.dfm}
-
 
 procedure TChildForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
 end;
- {
-Function TChildForm.fillArrayOfV(h, g:integer):Arr;
-begin
-  t := 0;
-  setlength(result, 1);
-  result[t][1] := 0;
-  result[t][2] := 0;
-  While result[t][2] < h do
-  begin
-    t := t + 1;
-
-    SetLength(result, length(result) + 1);
-
-    result[t][1] := t * g;
-    result[t][2] := result[t - 1][2] + result[t][1];
-  end;
-end;
-        }
 
 procedure TChildForm.PaintBox1Paint(Sender: TObject);
 var counter: integer;
 begin
-  ChildForm.t := 0;
-  setlength(ChildForm.A, 1);
-  ChildForm.A[ChildForm.t][1] := 0;
-  ChildForm.A[ChildForm.t][2] := 0;
-  While ChildForm.A[ChildForm.t][2] < MainForm.h do
+  t := 0;
+  setlength(A, 1);
+  A[t][1] := 0;                                             //1 - скорость
+  A[t][2] := 0;                                             //2 - пройтенный путь
+  While A[t][2] < MainForm.h do                             //÷икл который увеличивает врем€ на 1 секунду и высчитывает дл€ нее скорость и пройденный путь с условием выхода что пройденный путь стал больше чем начальна€ высота
   begin
-    ChildForm.t := ChildForm.t + 1;
+    t := t + 1;                                             //”величение времени на секунду
 
-    SetLength(ChildForm.A, length(ChildForm.A) + 1);
+    SetLength(A, length(A) + 1);                            //”величение размера массива с данными
 
-    ChildForm.A[ChildForm.t][1] := ChildForm.t * 10;
-    ChildForm.A[ChildForm.t][2] := ChildForm.A[ChildForm.t - 1][2] + ChildForm.A[ChildForm.t][1];
-
-  With PaintBox1, canvas do
+    A[t][1] := t * 10;                            //просчет скорости по формуле v = at
+    A[t][2] := A[t - 1][2] + A[t][1];  //ѕросчет пройденного пути  S = S0 + vt
+  end;
+  With PaintBox1, canvas do     //ќтрисовка этого массива
   begin
-    Brush.Color := clBlack;
+    Brush.Color := clBlack;                                                     //”становка цвета кисти
+    Pen.Color := clBlack;
+    Pen.Width := 1;
+    Pen.Style := psSolid;
 
-    MoveTo(0, Height);
 
-    For counter := 0 to Width do
+    MoveTo(0, Height);                                                          //ѕеремещение начала линии в левый нижний угол
+
+    For counter := 0 to t do
+    begin
+      LineTo((Width div t) * counter, Round(Height - A[counter][1]));
+    end;
+
+    {
+    For counter := 0 to Width do                                                //÷икл рисовани€ линий по точкам графика
     begin
       if counter div (Width div t) + 2 <= length(A) then
         LineTo(counter, Round(Height - A[counter div (Width div t) + 1][1] * (Height div round(A[t][1]))));
-    end;
+    end;}
   end;
 end;
-end;
+
 end.

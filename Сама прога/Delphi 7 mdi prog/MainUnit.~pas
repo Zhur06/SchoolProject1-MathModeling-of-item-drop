@@ -19,6 +19,7 @@ type
   private
     { Private declarations }
   public
+    h: integer;
     { Public declarations }
   end;
 
@@ -33,7 +34,7 @@ uses ChildUnit, ChildUnit2;
 
 procedure TMainForm.h1Click(Sender: TObject);
 begin
-  TChildForm.Create(Self);
+  ChildForm := TChildForm.Create(Self);
 end;
 
 procedure TMainForm.N3Click(Sender: TObject);

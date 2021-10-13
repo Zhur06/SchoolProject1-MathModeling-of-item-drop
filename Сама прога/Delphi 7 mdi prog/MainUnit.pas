@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus;
+  Dialogs, Menus, StdCtrls, ComCtrls, ExtCtrls;
 
 type
   TMainForm = class(TForm)
@@ -14,8 +14,18 @@ type
     h1: TMenuItem;
     N3: TMenuItem;
     N4: TMenuItem;
+    GroupBox1: TGroupBox;
+    OpenDialog1: TOpenDialog;
+    Panel1: TPanel;
+    Button1: TButton;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    Edit1: TEdit;
+    Button2: TButton;
     procedure h1Click(Sender: TObject);
     procedure N3Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,12 +44,27 @@ uses ChildUnit, ChildUnit2;
 
 procedure TMainForm.h1Click(Sender: TObject);
 begin
-  TChildForm.Create(Self);
+  ChildForm := TChildForm.Create(Self);
 end;
 
 procedure TMainForm.N3Click(Sender: TObject);
 begin
   ChildForm2 := TChildForm2.Create(Self);
+end;
+
+procedure TMainForm.Button2Click(Sender: TObject);
+var str: string; c: integer;
+begin
+  str := Edit1.Text;
+  for c:=1 to length(str) do
+  begin
+    if not (str[c] in ['0'..'9']) then
+    begin
+      Edit1.Text := 'You have typed something that was not a number';
+      EXIT;
+    end;
+  end;
+  MainForm.h := StrToInt(str);
 end;
 
 end.
