@@ -3,8 +3,7 @@ program Project1;
 uses
   Forms,
   MainUnit in 'MainUnit.pas' {MainForm},
-  ChildUnit in 'ChildUnit.pas' {ChildForm},
-  ChildUnit2 in 'ChildUnit2.pas' {ChildForm2};
+  ChildUnit in 'ChildUnit.pas' {ChildForm};
 
 {$R *.res}
 
