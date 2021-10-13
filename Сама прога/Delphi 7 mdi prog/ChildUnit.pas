@@ -56,6 +56,7 @@ begin
     A[t][1] := t * 10;                            //просчет скорости по формуле v = at
     A[t][2] := A[t - 1][2] + A[t][1];  //Просчет пройденного пути  S = S0 + vt
   end;
+  if t <> 0 then
   With PaintBox1, canvas do     //Отрисовка этого массива
   begin
     Brush.Color := clBlack;                                                     //Установка цвета кисти

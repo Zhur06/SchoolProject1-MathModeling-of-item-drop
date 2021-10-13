@@ -39,6 +39,7 @@ object MainForm: TMainForm
         Height = 25
         Caption = #1047#1072#1075#1088#1091#1079#1082#1072' '#1080#1079' '#1092#1072#1081#1083#1072
         TabOrder = 0
+        OnClick = Button1Click
       end
     end
     object PageControl1: TPageControl
@@ -69,6 +70,15 @@ object MainForm: TMainForm
           TabOrder = 1
           OnClick = Button2Click
         end
+        object Button3: TButton
+          Left = 8
+          Top = 64
+          Width = 153
+          Height = 25
+          Caption = #1042#1085#1077#1089#1090#1080' '#1079#1085#1072#1095#1077#1085#1080#1103' '#1074' '#1092#1072#1081#1083
+          TabOrder = 2
+          OnClick = Button3Click
+        end
       end
       object TabSheet2: TTabSheet
         Caption = #1043#1088#1072#1092#1080#1082' '#1086#1090' h '#1080' g'
@@ -77,8 +87,7 @@ object MainForm: TMainForm
     end
   end
   object MainMenu1: TMainMenu
-    Left = 320
-    Top = 16
+    Left = 272
     object N1: TMenuItem
       Caption = #1043#1088#1072#1092#1080#1082#1080
       object h1: TMenuItem
@@ -86,19 +95,13 @@ object MainForm: TMainForm
         OnClick = h1Click
       end
     end
-    object N2: TMenuItem
-      Caption = #1057#1095#1080#1090#1099#1074#1072#1085#1080#1077' '#1076#1072#1085#1085#1099#1093
-      object N3: TMenuItem
-        Caption = #1042#1074#1086#1076#1080#1090#1100' '#1074' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
-        OnClick = N3Click
-      end
-      object N4: TMenuItem
-        Caption = #1042#1079#1103#1090#1100' '#1080#1079' '#1092#1072#1081#1083#1072
-      end
-    end
   end
   object OpenDialog1: TOpenDialog
     Left = 200
     Top = 24
+  end
+  object SaveDialog1: TSaveDialog
+    Left = 174
+    Top = 144
   end
 end
