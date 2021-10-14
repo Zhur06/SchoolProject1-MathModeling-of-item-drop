@@ -13,8 +13,6 @@ type
     h1: TMenuItem;
     GroupBox1: TGroupBox;
     OpenDialog1: TOpenDialog;
-    Panel1: TPanel;
-    Button1: TButton;
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
@@ -28,12 +26,15 @@ type
     Button5: TButton;
     N2: TMenuItem;
     v1: TMenuItem;
+    Button1: TButton;
+    Button6: TButton;
     procedure h1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure v1Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -147,6 +148,39 @@ begin
     end;
   end;
   al := StrToInt(str);
+end;
+
+//-----------------Сохранение данный второго рисунка в файл---------------------
+
+procedure TMainForm.Button5Click(Sender: TObject);
+var ini: TIniFile; strV, strAl: string; c: integer;
+begin
+  strV := Edit2.Text;
+  for c:=1 to length(strV) do
+  begin
+    if not (strV[c] in ['0'..'9']) then
+    begin
+      Edit2.Text := 'You have typed something that was not a number';
+      EXIT;
+    end;
+  end;
+
+  strAl := Edit3.Text;
+  for c:=1 to length(strAl) do
+  begin
+    if not (strAl[c] in ['0'..'9']) then
+    begin
+      Edit3.Text := 'You have typed something that was not a number';
+      EXIT;
+    end;
+  end;
+
+  if SaveDialog1.Execute then
+  begin
+    ini := TIniFile.Create(SaveDialog1.FileName);
+    ini.WriteInteger('2', 'v', StrToInt(strV));
+    ini.WriteInteger('2', 'al', StrToInt(strAl));
+  end;
 end;
 
 end.

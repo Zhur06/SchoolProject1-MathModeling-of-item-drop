@@ -24,33 +24,15 @@ object MainForm: TMainForm
     Align = alLeft
     Caption = '   '#1042#1074#1086#1076' '#1076#1072#1085#1085#1099#1093'   '
     TabOrder = 0
-    object Panel1: TPanel
+    object PageControl1: TPageControl
       Left = 2
       Top = 15
       Width = 261
-      Height = 41
-      Align = alTop
-      BevelOuter = bvNone
-      TabOrder = 0
-      object Button1: TButton
-        Left = 16
-        Top = 8
-        Width = 145
-        Height = 25
-        Caption = #1047#1072#1075#1088#1091#1079#1082#1072' '#1080#1079' '#1092#1072#1081#1083#1072
-        TabOrder = 0
-        OnClick = Button1Click
-      end
-    end
-    object PageControl1: TPageControl
-      Left = 2
-      Top = 56
-      Width = 261
-      Height = 558
-      ActivePage = TabSheet1
+      Height = 599
+      ActivePage = TabSheet2
       Align = alClient
       MultiLine = True
-      TabOrder = 1
+      TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = #1043#1088#1072#1092#1080#1082' '#1090#1086#1083#1100#1082#1086' '#1086#1090' h'
         object Edit1: TEdit
@@ -78,6 +60,15 @@ object MainForm: TMainForm
           Caption = #1042#1085#1077#1089#1090#1080' '#1079#1085#1072#1095#1077#1085#1080#1103' '#1074' '#1092#1072#1081#1083
           TabOrder = 2
           OnClick = Button3Click
+        end
+        object Button1: TButton
+          Left = 8
+          Top = 96
+          Width = 153
+          Height = 25
+          Caption = #1057#1095#1080#1090#1072#1090#1100' '#1080#1079' '#1092#1072#1081#1083#1072
+          TabOrder = 3
+          OnClick = Button1Click
         end
       end
       object TabSheet2: TTabSheet
@@ -115,6 +106,15 @@ object MainForm: TMainForm
           Height = 25
           Caption = #1042#1085#1077#1089#1090#1080' '#1079#1085#1072#1095#1077#1085#1080#1103' '#1074' '#1092#1072#1081#1083
           TabOrder = 3
+          OnClick = Button5Click
+        end
+        object Button6: TButton
+          Left = 8
+          Top = 120
+          Width = 153
+          Height = 25
+          Caption = #1057#1095#1080#1090#1072#1090#1100' '#1080#1079' '#1092#1072#1081#1083#1072
+          TabOrder = 4
         end
       end
     end
@@ -137,8 +137,7 @@ object MainForm: TMainForm
     end
   end
   object OpenDialog1: TOpenDialog
-    Left = 200
-    Top = 24
+    Left = 328
   end
   object SaveDialog1: TSaveDialog
     Left = 302
