@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 429
-  Top = 266
+  Left = 451
+  Top = 259
   Width = 1305
   Height = 675
   Caption = 'MainForm'
@@ -56,7 +56,7 @@ object MainForm: TMainForm
         object Edit1: TEdit
           Left = 8
           Top = 8
-          Width = 121
+          Width = 153
           Height = 21
           TabOrder = 0
           Text = #1042#1074#1077#1076#1080#1090#1077' h'
@@ -81,8 +81,41 @@ object MainForm: TMainForm
         end
       end
       object TabSheet2: TTabSheet
-        Caption = #1043#1088#1072#1092#1080#1082' '#1086#1090' h '#1080' g'
+        Caption = #1056#1080#1089#1091#1085#1086#1082' '#1073#1088#1086#1089#1082#1072' '#1090#1077#1083#1072
         ImageIndex = 1
+        object Edit2: TEdit
+          Left = 8
+          Top = 8
+          Width = 153
+          Height = 21
+          TabOrder = 0
+          Text = #1042#1074#1077#1076#1080#1090#1077' v'
+        end
+        object Edit3: TEdit
+          Left = 8
+          Top = 32
+          Width = 153
+          Height = 21
+          TabOrder = 1
+          Text = #1042#1074#1077#1076#1080#1090#1077' '#1091#1075#1086#1083' '#1082' '#1075#1086#1088#1080#1079#1086#1085#1090#1091
+        end
+        object Button4: TButton
+          Left = 8
+          Top = 56
+          Width = 153
+          Height = 25
+          Caption = #1057#1095#1080#1090#1072#1090#1100' '#1076#1072#1085#1085#1099#1077' '#1080#1079' '#1103#1095#1077#1077#1082
+          TabOrder = 2
+          OnClick = Button4Click
+        end
+        object Button5: TButton
+          Left = 8
+          Top = 88
+          Width = 153
+          Height = 25
+          Caption = #1042#1085#1077#1089#1090#1080' '#1079#1085#1072#1095#1077#1085#1080#1103' '#1074' '#1092#1072#1081#1083
+          TabOrder = 3
+        end
       end
     end
   end
@@ -95,13 +128,19 @@ object MainForm: TMainForm
         OnClick = h1Click
       end
     end
+    object N2: TMenuItem
+      Caption = #1056#1080#1089#1091#1085#1082#1080
+      object v1: TMenuItem
+        Caption = #1052#1086#1076#1077#1083#1100' '#1087#1086#1083#1077#1090#1072' '#1090#1077#1083#1072' '#1089' '#1085#1072#1095#1072#1083#1100#1085#1086#1081' '#1089#1082#1086#1088#1086#1089#1090#1100#1102' v'
+        OnClick = v1Click
+      end
+    end
   end
   object OpenDialog1: TOpenDialog
     Left = 200
     Top = 24
   end
   object SaveDialog1: TSaveDialog
-    Left = 174
-    Top = 144
+    Left = 302
   end
 end
