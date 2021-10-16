@@ -1,8 +1,8 @@
 object MainForm: TMainForm
-  Left = 451
-  Top = 259
+  Left = 438
+  Top = 251
   Width = 1305
-  Height = 675
+  Height = 678
   Caption = 'MainForm'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -20,7 +20,7 @@ object MainForm: TMainForm
     Left = 0
     Top = 0
     Width = 265
-    Height = 616
+    Height = 619
     Align = alLeft
     Caption = '   '#1042#1074#1086#1076' '#1076#1072#1085#1085#1099#1093'   '
     TabOrder = 0
@@ -28,8 +28,8 @@ object MainForm: TMainForm
       Left = 2
       Top = 15
       Width = 261
-      Height = 599
-      ActivePage = TabSheet2
+      Height = 602
+      ActivePage = TabSheet3
       Align = alClient
       MultiLine = True
       TabOrder = 0
@@ -115,6 +115,54 @@ object MainForm: TMainForm
           Height = 25
           Caption = #1057#1095#1080#1090#1072#1090#1100' '#1080#1079' '#1092#1072#1081#1083#1072
           TabOrder = 4
+          OnClick = Button6Click
+        end
+      end
+      object TabSheet3: TTabSheet
+        Caption = #1043#1088#1072#1092#1080#1082' '#1087#1072#1076#1077#1085#1080#1103' '#1086#1090' h '#1080' g'
+        ImageIndex = 2
+        object Edit4: TEdit
+          Left = 8
+          Top = 8
+          Width = 153
+          Height = 21
+          TabOrder = 0
+          Text = #1042#1074#1077#1076#1080#1090#1077' h'
+        end
+        object Edit5: TEdit
+          Left = 8
+          Top = 32
+          Width = 153
+          Height = 21
+          TabOrder = 1
+          Text = #1042#1074#1077#1076#1080#1090#1077' g'
+        end
+        object Button7: TButton
+          Left = 8
+          Top = 56
+          Width = 153
+          Height = 25
+          Caption = #1057#1095#1080#1090#1072#1090#1100' '#1076#1072#1085#1085#1099#1077' '#1080#1079' '#1103#1095#1077#1077#1082
+          TabOrder = 2
+          OnClick = Button7Click
+        end
+        object Button8: TButton
+          Left = 8
+          Top = 88
+          Width = 153
+          Height = 25
+          Caption = #1042#1085#1077#1089#1090#1080' '#1079#1085#1072#1095#1077#1085#1080#1103' '#1074' '#1092#1072#1081#1083
+          TabOrder = 3
+          OnClick = Button8Click
+        end
+        object Button9: TButton
+          Left = 8
+          Top = 120
+          Width = 153
+          Height = 25
+          Caption = #1057#1095#1080#1090#1072#1090#1100' '#1080#1079' '#1092#1072#1081#1083#1072
+          TabOrder = 4
+          OnClick = Button9Click
         end
       end
     end
@@ -126,6 +174,10 @@ object MainForm: TMainForm
       object h1: TMenuItem
         Caption = #1052#1086#1076#1077#1083#1100' '#1087#1072#1076#1077#1085#1080#1103' '#1090#1086#1083#1100#1082#1086' '#1086#1090' h'
         OnClick = h1Click
+      end
+      object hg1: TMenuItem
+        Caption = #1052#1086#1076#1077#1083#1100' '#1087#1072#1076#1077#1085#1080#1103' '#1086#1090' h '#1080' g'
+        OnClick = hg1Click
       end
     end
     object N2: TMenuItem
