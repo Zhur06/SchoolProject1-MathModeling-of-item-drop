@@ -86,6 +86,8 @@ begin
     end;
   end;
   h := StrToInt(str);
+  if Assigned(ChildForm) then
+    ChildForm.PaintBox1Paint(Self);
 end;
 
 //-----------------—читывание данных дл€ первого графика из файла---------------
@@ -103,6 +105,8 @@ begin
       ini.Free;
     end;
   end;
+  if Assigned(ChildForm) then
+    ChildForm.PaintBox1Paint(Self);
 end;
 
 //-----------------—охранение данных первого графика в файл---------------------
@@ -160,6 +164,9 @@ begin
     end;
   end;
   al := StrToInt(str);
+
+  if Assigned(ChildForm2) then
+    ChildForm2.PaintBox1Paint(Self);
 end;
 
 //-----------------—читывание данных дл€ второго рисунка из файла---------------
@@ -172,7 +179,7 @@ begin
     ini := TIniFile.Create(OpenDialog1.FileName);
     try
       v := ini.ReadInteger('2', 'v', 0);
-      Edit2.Text := IntToStr(h);
+      Edit2.Text := IntToStr(v);
 
       al := ini.ReadInteger('2', 'al', 0);
       Edit3.Text := IntToStr(al);
@@ -180,6 +187,9 @@ begin
       ini.Free;
     end;
   end;
+
+  if Assigned(ChildForm2) then
+    ChildForm2.PaintBox1Paint(Self);
 end;
 
 //-----------------—охранение данных второго рисунка в файл---------------------
@@ -248,6 +258,9 @@ begin
     end;
   end;
   g := StrToInt(str);
+
+  if Assigned(ChildForm3) then
+    ChildForm3.PaintBox1Paint(Self);
 end;
 
 //-----------------—читывание данных дл€ третьего графика из файла---------------
@@ -268,6 +281,8 @@ begin
       ini.Free;
     end;
   end;
+  if Assigned(ChildForm3) then
+    ChildForm3.PaintBox1Paint(Self);
 end;
 
 //-----------------—охранение данных третьего графика в файл--------------------
