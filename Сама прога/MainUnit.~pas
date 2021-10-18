@@ -179,7 +179,7 @@ begin
     ini := TIniFile.Create(OpenDialog1.FileName);
     try
       v := ini.ReadInteger('2', 'v', 0);
-      Edit2.Text := IntToStr(h);
+      Edit2.Text := IntToStr(v);
 
       al := ini.ReadInteger('2', 'al', 0);
       Edit3.Text := IntToStr(al);
