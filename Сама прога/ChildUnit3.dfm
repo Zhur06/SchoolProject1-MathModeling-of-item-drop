@@ -3,7 +3,7 @@ object ChildForm3: TChildForm3
   Top = 479
   Width = 809
   Height = 340
-  Caption = 'ChildForm3'
+  Caption = #1043#1088#1072#1092#1080#1082' '#1087#1072#1076#1077#1085#1080#1103' '#1090#1077#1083#1072' '#1086#1090' '#1074#1099#1089#1086#1090#1099' '#1080' '#1091#1089#1082#1086#1088#1077#1085#1080#1103
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

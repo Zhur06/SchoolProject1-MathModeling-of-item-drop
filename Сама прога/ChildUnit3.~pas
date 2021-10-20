@@ -7,12 +7,15 @@ uses
   Dialogs, ExtCtrls;
 
 type
+  Arr = array of array [1..2] of real;
   TChildForm3 = class(TForm)
     PaintBox1: TPaintBox;
     procedure PaintBox1Paint(Sender: TObject);
   private
     { Private declarations }
   public
+    t : integer;
+    A : Arr;
     { Public declarations }
   end;
 

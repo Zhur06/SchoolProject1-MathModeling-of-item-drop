@@ -47,6 +47,11 @@ type
     procedure Button8Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
+    procedure Edit1Click(Sender: TObject);
+    procedure Edit2Click(Sender: TObject);
+    procedure Edit3Click(Sender: TObject);
+    procedure Edit4Click(Sender: TObject);
+    procedure Edit5Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -318,4 +323,48 @@ begin
   end;
 end;
 
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit1Click(Sender: TObject);
+begin
+  if Edit1.Text = '¬ведите h' then Edit1.Text := ''
+  else if Edit1.Text = '' then Edit1.Text := '¬ведите h'
+  else if Edit1.Text = 'You have typed something that was not a number' then Edit1.Text := '';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit2Click(Sender: TObject);
+begin
+  if Edit2.Text = '¬ведите v' then Edit2.Text := ''
+  else if Edit2.Text = '' then Edit2.Text := '¬ведите v'
+  else if Edit2.Text = 'You have typed something that was not a number' then Edit2.Text := '';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit3Click(Sender: TObject);
+begin
+  if Edit3.Text = '¬ведите угол к горизонту' then Edit3.Text := ''
+  else if Edit3.Text = '' then Edit3.Text := '¬ведите угол к горизонту'
+  else if Edit3.Text = 'You have typed something that was not a number' then Edit3.Text := '';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit4Click(Sender: TObject);
+begin
+  if Edit4.Text = '¬ведите h' then Edit4.Text := ''
+  else if Edit4.Text = '' then Edit4.Text := '¬ведите h'
+  else if Edit4.Text = 'You have typed something that was not a number' then Edit4.Text := '';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit5Click(Sender: TObject);
+begin
+  if Edit5.Text = '¬ведите g' then Edit5.Text := ''
+  else if Edit5.Text = '' then Edit5.Text := '¬ведите g'
+  else if Edit5.Text = 'You have typed something that was not a number' then Edit5.Text := '';
+end;
 end.
