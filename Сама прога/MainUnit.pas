@@ -35,6 +35,10 @@ type
     Button8: TButton;
     Button9: TButton;
     hg1: TMenuItem;
+    N3: TMenuItem;
+    h2: TMenuItem;
+    hg2: TMenuItem;
+    v2: TMenuItem;
     procedure h1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -57,6 +61,7 @@ type
     procedure Edit4Exit(Sender: TObject);
     procedure Edit5Enter(Sender: TObject);
     procedure Edit5Exit(Sender: TObject);
+    procedure h2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -69,7 +74,7 @@ var
 
 implementation
 
-uses ChildUnit, IniFiles, ChildUnit2, ChildUnit3;
+uses ChildUnit, IniFiles, ChildUnit2, ChildUnit3, ChildUnit4;
 
 {$R *.dfm}
 
@@ -422,6 +427,13 @@ begin
   For i := 0 to length(Edit5.Text) - 1 do
     if i in [0..9] then numberic := false;
   if numberic then Edit5.Text := '¬ведите g';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.h2Click(Sender: TObject);
+begin
+  ChildForm4 := TChildForm4.Create(Self);
 end;
 
 end.
