@@ -39,6 +39,18 @@ type
     h2: TMenuItem;
     hg2: TMenuItem;
     v2: TMenuItem;
+    Button10: TButton;
+    Button11: TButton;
+    Button12: TButton;
+    PopupMenu1: TPopupMenu;
+    GroupBox2: TGroupBox;
+    Edit6: TEdit;
+    Edit7: TEdit;
+    Edit8: TEdit;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Button13: TButton;
     procedure h1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -62,10 +74,15 @@ type
     procedure Edit5Enter(Sender: TObject);
     procedure Edit5Exit(Sender: TObject);
     procedure h2Click(Sender: TObject);
+    procedure Button10Click(Sender: TObject);
+    procedure Button11Click(Sender: TObject);
+    procedure Button12Click(Sender: TObject);
+    procedure Button13Click(Sender: TObject);
   private
     { Private declarations }
   public
     h, V, al, g: integer;
+    Color: TColor;
     { Public declarations }
   end;
 
@@ -434,6 +451,60 @@ end;
 procedure TMainForm.h2Click(Sender: TObject);
 begin
   ChildForm4 := TChildForm4.Create(Self);
+end;
+
+procedure TMainForm.Button10Click(Sender: TObject);
+begin
+  ChildForm := TChildForm.Create(Self);
+end;
+
+procedure TMainForm.Button11Click(Sender: TObject);
+begin
+  ChildForm2 := TChildForm2.Create(Self);
+end;
+
+procedure TMainForm.Button12Click(Sender: TObject);
+begin
+  ChildForm3 := TChildForm3.Create(Self);
+end;
+
+procedure TMainForm.Button13Click(Sender: TObject);
+var str: string; r, g, b, c: integer;
+begin
+  str := Edit6.Text;
+  for c:=1 to length(str) do
+  begin
+    if not (str[c] in ['0'..'9']) then
+    begin
+      Edit6.Text := 'You have typed something that was not a number';
+      EXIT;
+    end;
+  end;
+  r := StrToInt(str);
+
+  str := Edit7.Text;
+  for c:=1 to length(str) do
+  begin
+    if not (str[c] in ['0'..'9']) then
+    begin
+      Edit7.Text := 'You have typed something that was not a number';
+      EXIT;
+    end;
+  end;
+  g := StrToInt(str);
+
+  str := Edit8.Text;
+  for c:=1 to length(str) do
+  begin
+    if not (str[c] in ['0'..'9']) then
+    begin
+      Edit8.Text := 'You have typed something that was not a number';
+      EXIT;
+    end;
+  end;
+  b := StrToInt(str);
+
+  Color := RGB(r, g, b);
 end;
 
 end.

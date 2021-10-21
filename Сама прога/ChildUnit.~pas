@@ -41,8 +41,11 @@ begin
 end;
 
 procedure TChildForm.PaintBox1Paint(Sender: TObject);
-var counter: integer;
+var counter, j1, otstup, otstup2: integer;
 begin
+  otstup := 20;
+  otstup2 := 15;
+
   t := 0;
   setlength(A, 1);
   A[t][1] := 0;                                             //1 - скорость
@@ -61,17 +64,38 @@ begin
   if t <> 0 then
   With PaintBox1, canvas do     //Отрисовка этого массива
   begin
-    Brush.Color := clBlack;                                                     //Установка цвета кисти
+    Brush.Color := clWhite;                                                     //Установка цвета кисти
     Pen.Color := clBlack;
     Pen.Width := 1;
     Pen.Style := psSolid;
 
+    MoveTo(0, Height - otstup);
+    LineTo(Width, Height - otstup);
+    MoveTo(otstup, 0);
+    LineTo(otstup, Height);
 
-    MoveTo(0, Height);                                                          //Перемещение начала линии в левый нижний угол
+    For j1 := 1 to (Height div otstup2) - 1 do                                  //Вертикальная ось
+    begin
+      MoveTo(otstup - 5, Height - otstup - (j1*otstup2));
+      LineTo(otstup + 5, Height - otstup - (j1*otstup2));
+
+      TextOut(0, Height - otstup - (j1*otstup2), IntToStr(j1 * otstup2));
+    end;
+
+    For j1 := 1 to (Width div 10) - 1 do                                        //горизонтальная ось
+    begin
+      MoveTo(otstup + (j1*otstup2), Height - otstup - 5);
+      LineTo(otstup + (j1*otstup2), Height - otstup + 5);
+
+      TextOut(otstup + (j1*otstup2), Height - otstup, IntToStr(j1 div (Width - otstup) div Round(A[t][1])));  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    end;
+
+
+    MoveTo(otstup, Height - otstup);                                            //Перемещение начала линии в левый нижний угол
 
     For counter := 0 to t do
     begin
-      LineTo((Width div t) * counter, Round(Height - A[counter][1]));
+      LineTo(((Width - otstup) div t) * counter + otstup, Round((Height - otstup) - A[counter][1]));
     end;
 
     {
