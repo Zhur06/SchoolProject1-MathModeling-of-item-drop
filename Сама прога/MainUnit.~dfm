@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 437
-  Top = 122
+  Left = 321
+  Top = 74
   Width = 889
   Height = 678
   Caption = #1054#1089#1085#1086#1074#1085#1086#1077' '#1086#1082#1085#1086
@@ -22,14 +22,14 @@ object MainForm: TMainForm
     Width = 265
     Height = 619
     Align = alLeft
-    Caption = '   '#1042#1074#1086#1076' '#1076#1072#1085#1085#1099#1093'   '
+    Caption = '   '#1042#1074#1086#1076' '#1076#1072#1085#1085#1099#1093'  '#1044#1083#1103' '#1086#1090#1088#1080#1089#1086#1074#1082#1080' '#1074#1099#1073#1077#1088#1080#1090#1077' '#1074#1099#1096#1077'  '
     TabOrder = 0
     object PageControl1: TPageControl
       Left = 2
       Top = 15
       Width = 261
       Height = 602
-      ActivePage = TabSheet1
+      ActivePage = TabSheet3
       Align = alClient
       MultiLine = True
       TabOrder = 0
@@ -45,7 +45,8 @@ object MainForm: TMainForm
           ShowHint = True
           TabOrder = 0
           Text = #1042#1074#1077#1076#1080#1090#1077' h'
-          OnClick = Edit1Click
+          OnEnter = Edit1Enter
+          OnExit = Edit1Exit
         end
         object Button2: TButton
           Left = 8
@@ -101,7 +102,8 @@ object MainForm: TMainForm
           ShowHint = True
           TabOrder = 0
           Text = #1042#1074#1077#1076#1080#1090#1077' v'
-          OnClick = Edit2Click
+          OnEnter = Edit2Enter
+          OnExit = Edit2Exit
         end
         object Edit3: TEdit
           Left = 8
@@ -113,7 +115,8 @@ object MainForm: TMainForm
           ShowHint = True
           TabOrder = 1
           Text = #1042#1074#1077#1076#1080#1090#1077' '#1091#1075#1086#1083' '#1082' '#1075#1086#1088#1080#1079#1086#1085#1090#1091
-          OnClick = Edit3Click
+          OnEnter = Edit3Enter
+          OnExit = Edit3Exit
         end
         object Button4: TButton
           Left = 8
@@ -169,7 +172,8 @@ object MainForm: TMainForm
           ShowHint = True
           TabOrder = 0
           Text = #1042#1074#1077#1076#1080#1090#1077' h'
-          OnClick = Edit4Click
+          OnEnter = Edit4Enter
+          OnExit = Edit4Exit
         end
         object Edit5: TEdit
           Left = 8
@@ -181,7 +185,8 @@ object MainForm: TMainForm
           ShowHint = True
           TabOrder = 1
           Text = #1042#1074#1077#1076#1080#1090#1077' g'
-          OnClick = Edit5Click
+          OnEnter = Edit5Enter
+          OnExit = Edit5Exit
         end
         object Button7: TButton
           Left = 8

@@ -47,16 +47,20 @@ type
     procedure Button8Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
-    procedure Edit1Click(Sender: TObject);
-    procedure Edit2Click(Sender: TObject);
-    procedure Edit3Click(Sender: TObject);
-    procedure Edit4Click(Sender: TObject);
-    procedure Edit5Click(Sender: TObject);
+    procedure Edit1Enter(Sender: TObject);
+    procedure Edit1Exit(Sender: TObject);
+    procedure Edit2Enter(Sender: TObject);
+    procedure Edit2Exit(Sender: TObject);
+    procedure Edit3Enter(Sender: TObject);
+    procedure Edit3Exit(Sender: TObject);
+    procedure Edit4Enter(Sender: TObject);
+    procedure Edit4Exit(Sender: TObject);
+    procedure Edit5Enter(Sender: TObject);
+    procedure Edit5Exit(Sender: TObject);
   private
     { Private declarations }
   public
     h, V, al, g: integer;
-
     { Public declarations }
   end;
 
@@ -69,14 +73,14 @@ uses ChildUnit, IniFiles, ChildUnit2, ChildUnit3;
 
 {$R *.dfm}
 
-//-----------------—оздание первого графика-------------------------------------
+//----------------- —оздание первого графика -----------------------------------
 
 procedure TMainForm.h1Click(Sender: TObject);
 begin
   ChildForm := TChildForm.Create(Self);
 end;
 
-//-----------------—читывание данных дл€ первого графика------------------------
+//----------------- —читывание данных дл€ первого графика ----------------------
 
 procedure TMainForm.Button2Click(Sender: TObject);
 var str: string; c: integer;
@@ -95,7 +99,7 @@ begin
     ChildForm.PaintBox1Paint(Self);
 end;
 
-//-----------------—читывание данных дл€ первого графика из файла---------------
+//----------------- —читывание данных дл€ первого графика из файла -------------
 
 procedure TMainForm.Button1Click(Sender: TObject);
 var ini: TIniFile; //str: string;
@@ -114,7 +118,7 @@ begin
     ChildForm.PaintBox1Paint(Self);
 end;
 
-//-----------------—охранение данных первого графика в файл---------------------
+//----------------- —охранение данных первого графика в файл -------------------
 
 procedure TMainForm.Button3Click(Sender: TObject);
 var ini: TIniFile; str: string; c: integer;
@@ -136,14 +140,14 @@ begin
   end;
 end;
 
-//-----------------—оздание второго рисунка-------------------------------------
+//----------------- —оздание второго рисунка -----------------------------------
 
 procedure TMainForm.v1Click(Sender: TObject);
 begin
   ChildForm2 := TChildForm2.Create(Self);
 end;
 
-//-----------------—читывание данных дл€ второго рисунка------------------------
+//----------------- —читывание данных дл€ второго рисунка ----------------------
 
 procedure TMainForm.Button4Click(Sender: TObject);
 var str: string; c: integer;
@@ -174,7 +178,7 @@ begin
     ChildForm2.PaintBox1Paint(Self);
 end;
 
-//-----------------—читывание данных дл€ второго рисунка из файла---------------
+//----------------- —читывание данных дл€ второго рисунка из файла -------------
 
 procedure TMainForm.Button6Click(Sender: TObject);
 var ini: TIniFile; //str: string;
@@ -197,7 +201,7 @@ begin
     ChildForm2.PaintBox1Paint(Self);
 end;
 
-//-----------------—охранение данных второго рисунка в файл---------------------
+//----------------- —охранение данных второго рисунка в файл -------------------
 
 procedure TMainForm.Button5Click(Sender: TObject);
 var ini: TIniFile; strV, strAl: string; c: integer;
@@ -230,14 +234,14 @@ begin
   end;
 end;
 
-//-----------------—оздание третьего графика------------------------------------
+//----------------- —оздание третьего графика ----------------------------------
 
 procedure TMainForm.hg1Click(Sender: TObject);
 begin
   ChildForm3 := TChildForm3.Create(Self);
 end;
 
-//-----------------—читывание данных дл€ третьего графика-----------------------
+//----------------- —читывание данных дл€ третьего графика ---------------------
 
 procedure TMainForm.Button7Click(Sender: TObject);
 var str: string; c: integer;
@@ -268,7 +272,7 @@ begin
     ChildForm3.PaintBox1Paint(Self);
 end;
 
-//-----------------—читывание данных дл€ третьего графика из файла---------------
+//----------------- —читывание данных дл€ третьего графика из файла ------------
 
 procedure TMainForm.Button9Click(Sender: TObject);
 var ini: TIniFile; //str: string;
@@ -290,7 +294,7 @@ begin
     ChildForm3.PaintBox1Paint(Self);
 end;
 
-//-----------------—охранение данных третьего графика в файл--------------------
+//----------------- —охранение данных третьего графика в файл ------------------
 
 procedure TMainForm.Button8Click(Sender: TObject);
 var ini: TIniFile; strH, strG: string; c: integer;
@@ -323,48 +327,101 @@ begin
   end;
 end;
 
-//------------------------------------------------------------------------------
+//----------------- —тирание при входе в €чейку --------------------------------
 
-procedure TMainForm.Edit1Click(Sender: TObject);
+procedure TMainForm.Edit1Enter(Sender: TObject);
 begin
   if Edit1.Text = '¬ведите h' then Edit1.Text := ''
-  else if Edit1.Text = '' then Edit1.Text := '¬ведите h'
   else if Edit1.Text = 'You have typed something that was not a number' then Edit1.Text := '';
 end;
 
 //------------------------------------------------------------------------------
 
-procedure TMainForm.Edit2Click(Sender: TObject);
+
+procedure TMainForm.Edit1Exit(Sender: TObject);
+var i: integer; numberic: boolean;
+begin
+  numberic := true;
+  For i := 0 to length(Edit1.Text) - 1 do
+    if i in [0..9] then numberic := false;
+  if numberic then Edit1.Text := '¬ведите h';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit2Enter(Sender: TObject);
 begin
   if Edit2.Text = '¬ведите v' then Edit2.Text := ''
-  else if Edit2.Text = '' then Edit2.Text := '¬ведите v'
   else if Edit2.Text = 'You have typed something that was not a number' then Edit2.Text := '';
 end;
 
 //------------------------------------------------------------------------------
 
-procedure TMainForm.Edit3Click(Sender: TObject);
+procedure TMainForm.Edit2Exit(Sender: TObject);
+var i: integer; numberic: boolean;
+begin
+  numberic := true;
+  For i := 0 to length(Edit2.Text) - 1 do
+    if i in [0..9] then numberic := false;
+  if numberic then Edit2.Text := '¬ведите v';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit3Enter(Sender: TObject);
 begin
   if Edit3.Text = '¬ведите угол к горизонту' then Edit3.Text := ''
-  else if Edit3.Text = '' then Edit3.Text := '¬ведите угол к горизонту'
   else if Edit3.Text = 'You have typed something that was not a number' then Edit3.Text := '';
 end;
 
 //------------------------------------------------------------------------------
 
-procedure TMainForm.Edit4Click(Sender: TObject);
+procedure TMainForm.Edit3Exit(Sender: TObject);
+var i: integer; numberic: boolean;
+begin
+  numberic := true;
+  For i := 0 to length(Edit3.Text) - 1 do
+    if i in [0..9] then numberic := false;
+  if numberic then Edit3.Text := '¬ведите угол к горизонту';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit4Enter(Sender: TObject);
 begin
   if Edit4.Text = '¬ведите h' then Edit4.Text := ''
-  else if Edit4.Text = '' then Edit4.Text := '¬ведите h'
   else if Edit4.Text = 'You have typed something that was not a number' then Edit4.Text := '';
 end;
 
 //------------------------------------------------------------------------------
 
-procedure TMainForm.Edit5Click(Sender: TObject);
+
+procedure TMainForm.Edit4Exit(Sender: TObject);
+var i: integer; numberic: boolean;
+begin
+  numberic := true;
+  For i := 0 to length(Edit4.Text) - 1 do
+    if i in [0..9] then numberic := false;
+  if numberic then Edit4.Text := '¬ведите h';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit5Enter(Sender: TObject);
 begin
   if Edit5.Text = '¬ведите g' then Edit5.Text := ''
-  else if Edit5.Text = '' then Edit5.Text := '¬ведите g'
   else if Edit5.Text = 'You have typed something that was not a number' then Edit5.Text := '';
 end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit5Exit(Sender: TObject);
+var i: integer; numberic: boolean;
+begin
+  numberic := true;
+  For i := 0 to length(Edit5.Text) - 1 do
+    if i in [0..9] then numberic := false;
+  if numberic then Edit5.Text := '¬ведите g';
+end;
+
 end.
