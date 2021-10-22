@@ -7,6 +7,19 @@ uses
   Dialogs, Menus, StdCtrls, ComCtrls, ExtCtrls;
 
 type
+  Col = class
+  public
+    h, g: integer;
+    color: TColor;
+  end;
+
+  Pic = class
+  public
+    v: integer;
+    al: integer;
+    color: TColor;
+  end;
+
   TMainForm = class(TForm)
     MainMenu1: TMainMenu;
     N1: TMenuItem;
@@ -51,6 +64,22 @@ type
     Panel2: TPanel;
     Panel3: TPanel;
     Button13: TButton;
+    GroupBox3: TGroupBox;
+    Edit9: TEdit;
+    Edit10: TEdit;
+    Edit11: TEdit;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    Panel6: TPanel;
+    Button14: TButton;
+    GroupBox4: TGroupBox;
+    Edit12: TEdit;
+    Edit13: TEdit;
+    Edit14: TEdit;
+    Panel7: TPanel;
+    Panel8: TPanel;
+    Panel9: TPanel;
+    Button15: TButton;
     procedure h1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -78,11 +107,21 @@ type
     procedure Button11Click(Sender: TObject);
     procedure Button12Click(Sender: TObject);
     procedure Button13Click(Sender: TObject);
+    procedure Edit6Change(Sender: TObject);
+    procedure Edit12Change(Sender: TObject);
+    procedure Edit9Change(Sender: TObject);
+    procedure Edit7Change(Sender: TObject);
+    procedure Edit13Change(Sender: TObject);
+    procedure Edit10Change(Sender: TObject);
+    procedure Edit8Change(Sender: TObject);
+    procedure Edit14Change(Sender: TObject);
+    procedure Edit11Change(Sender: TObject);
   private
     { Private declarations }
   public
-    h, V, al, g: integer;
-    Color: TColor;
+    //g: Array of integer;
+    hA: Array of Col;
+    pictureA: array of Pic;
     { Public declarations }
   end;
 
@@ -94,6 +133,8 @@ implementation
 uses ChildUnit, IniFiles, ChildUnit2, ChildUnit3, ChildUnit4;
 
 {$R *.dfm}
+
+//################# ПЕРВЫЙ ГРАФИК ##############################################
 
 //----------------- Создание первого графика -----------------------------------
 
@@ -116,7 +157,14 @@ begin
       EXIT;
     end;
   end;
-  h := StrToInt(str);
+
+  SetLength(hA, length(hA) + 1);
+  hA[Length(hA) - 1] := Col.Create;
+
+  hA[length(hA) - 1].h := StrToInt(str);
+  hA[length(hA) - 1].g := 10;
+  hA[length(hA) - 1].color := clBlack;
+
   if Assigned(ChildForm) then
     ChildForm.PaintBox1Paint(Self);
 end;
@@ -124,14 +172,17 @@ end;
 //----------------- Считывание данных для первого графика из файла -------------
 
 procedure TMainForm.Button1Click(Sender: TObject);
-var ini: TIniFile; //str: string;
+var ini: TIniFile;
 begin
   if OpenDialog1.Execute then
   begin
     ini := TIniFile.Create(OpenDialog1.FileName);
     try
-      h := ini.ReadInteger('1', 'h', 0);
-      Edit1.Text := IntToStr(h);
+      SetLength(hA, length(hA) + 1);
+      hA[Length(hA) - 1] := Col.Create;
+      hA[length(hA) - 1].h := ini.ReadInteger('1', 'h', 0);
+      hA[length(hA) - 1].color := clBlack;
+      Edit1.Text := IntToStr(hA[length(hA) - 1].h);
     finally
       ini.Free;
     end;
@@ -162,6 +213,8 @@ begin
   end;
 end;
 
+//################# ВТОРОЙ ГРАФИК ##############################################
+
 //----------------- Создание второго рисунка -----------------------------------
 
 procedure TMainForm.v1Click(Sender: TObject);
@@ -183,7 +236,9 @@ begin
       EXIT;
     end;
   end;
-  V := StrToInt(str);
+  SetLength(pictureA, length(pictureA) + 1);
+  pictureA[length(pictureA) - 1] := Pic.Create;
+  pictureA[length(pictureA) - 1].V := StrToInt(str);
 
   str := Edit3.Text;
   for c:=1 to length(str) do
@@ -194,7 +249,8 @@ begin
       EXIT;
     end;
   end;
-  al := StrToInt(str);
+  pictureA[length(pictureA) - 1].al := StrToInt(str);
+  pictureA[length(pictureA) - 1].Color := clBlack;
 
   if Assigned(ChildForm2) then
     ChildForm2.PaintBox1Paint(Self);
@@ -203,17 +259,19 @@ end;
 //----------------- Считывание данных для второго рисунка из файла -------------
 
 procedure TMainForm.Button6Click(Sender: TObject);
-var ini: TIniFile; //str: string;
+var ini: TIniFile;
 begin
   if OpenDialog1.Execute then
   begin
     ini := TIniFile.Create(OpenDialog1.FileName);
     try
-      v := ini.ReadInteger('2', 'v', 0);
-      Edit2.Text := IntToStr(v);
+      SetLength(pictureA, length(pictureA) + 1);
+      pictureA[length(pictureA) - 1] := Pic.Create;
+      pictureA[length(pictureA) - 1].v := ini.ReadInteger('2', 'v', 0);
+      Edit2.Text := IntToStr(pictureA[length(pictureA) - 1].v);
 
-      al := ini.ReadInteger('2', 'al', 0);
-      Edit3.Text := IntToStr(al);
+      pictureA[length(pictureA) - 1].al := ini.ReadInteger('2', 'al', 0);
+      Edit3.Text := IntToStr(pictureA[length(pictureA) - 1].al);
     finally
       ini.Free;
     end;
@@ -256,6 +314,8 @@ begin
   end;
 end;
 
+//################# ТРЕТИЙ ГРАФИК ##############################################
+
 //----------------- Создание третьего графика ----------------------------------
 
 procedure TMainForm.hg1Click(Sender: TObject);
@@ -277,7 +337,10 @@ begin
       EXIT;
     end;
   end;
-  h := StrToInt(str);
+  SetLength(hA, length(hA) + 1);
+  hA[Length(hA) - 1] := Col.Create;
+
+  hA[length(hA) - 1].h := StrToInt(str);
 
   str := Edit5.Text;
   for c:=1 to length(str) do
@@ -288,7 +351,7 @@ begin
       EXIT;
     end;
   end;
-  g := StrToInt(str);
+  hA[length(hA) - 1].g := StrToInt(str);
 
   if Assigned(ChildForm3) then
     ChildForm3.PaintBox1Paint(Self);
@@ -297,17 +360,18 @@ end;
 //----------------- Считывание данных для третьего графика из файла ------------
 
 procedure TMainForm.Button9Click(Sender: TObject);
-var ini: TIniFile; //str: string;
+var ini: TIniFile;
 begin
   if OpenDialog1.Execute then
   begin
     ini := TIniFile.Create(OpenDialog1.FileName);
     try
-      h := ini.ReadInteger('2', 'h', 0);
-      Edit4.Text := IntToStr(h);
+      SetLength(hA, length(hA) + 1);
+      hA[length(hA) - 1].h := ini.ReadInteger('2', 'h', 0);
+      Edit4.Text := IntToStr(hA[length(hA) - 1].h);
 
-      g := ini.ReadInteger('2', 'h', 0);
-      Edit5.Text := IntToStr(g);
+      hA[length(hA) - 1].g := ini.ReadInteger('2', 'g', 0);
+      Edit5.Text := IntToStr(hA[length(hA) - 1].g);
     finally
       ini.Free;
     end;
@@ -348,6 +412,8 @@ begin
     ini.WriteInteger('3', 'g', StrToInt(strG));
   end;
 end;
+
+//################# ШТУКИ ДЛЯ ИНТЕРФЕЙСА #######################################
 
 //----------------- Стирание при входе в ячейку --------------------------------
 
@@ -446,7 +512,7 @@ begin
   if numberic then Edit5.Text := 'Введите g';
 end;
 
-//------------------------------------------------------------------------------
+//----------------- Дубликаты кнопок создания графика --------------------------
 
 procedure TMainForm.h2Click(Sender: TObject);
 begin
@@ -467,6 +533,10 @@ procedure TMainForm.Button12Click(Sender: TObject);
 begin
   ChildForm3 := TChildForm3.Create(Self);
 end;
+
+//################# ИЗМЕНЕНИЕ ЦВЕТОВ ГРАФИКОВ ##################################
+
+//----------------- Считывание цветов ------------------------------------------
 
 procedure TMainForm.Button13Click(Sender: TObject);
 var str: string; r, g, b, c: integer;
@@ -504,7 +574,70 @@ begin
   end;
   b := StrToInt(str);
 
-  Color := RGB(r, g, b);
+  if length(hA) > 0 then hA[length(hA) - 1].color := RGB(r, g, b);
+  if length(pictureA) > 0 then pictureA[length(pictureA) - 1].color := RGB(r, g, b);
 end;
+
+//----------------- Синхронизация ечеек изменения цвета ------------------------
+
+procedure TMainForm.Edit6Change(Sender: TObject);
+begin
+  Edit12.Text := Edit6.Text;
+  Edit9.Text := Edit6.Text;
+end;
+
+
+procedure TMainForm.Edit12Change(Sender: TObject);
+begin
+  Edit6.Text := Edit12.Text;
+  Edit9.Text := Edit12.Text;
+end;
+
+procedure TMainForm.Edit9Change(Sender: TObject);
+begin
+  Edit12.Text := Edit9.Text;
+  Edit6.Text := Edit9.Text;
+end;
+
+
+
+procedure TMainForm.Edit7Change(Sender: TObject);
+begin
+  Edit13.Text := Edit7.Text;
+  Edit10.Text := Edit7.Text;
+end;
+
+procedure TMainForm.Edit13Change(Sender: TObject);
+begin
+  Edit7.Text := Edit13.Text;
+  Edit10.Text := Edit13.Text;
+end;
+
+
+procedure TMainForm.Edit10Change(Sender: TObject);
+begin
+  Edit13.Text := Edit10.Text;
+  Edit7.Text := Edit10.Text;
+end;
+
+procedure TMainForm.Edit8Change(Sender: TObject);
+begin
+  Edit14.Text := Edit8.Text;
+  Edit11.Text := Edit8.Text;
+end;
+
+procedure TMainForm.Edit14Change(Sender: TObject);
+begin
+  Edit8.Text := Edit14.Text;
+  Edit11.Text := Edit14.Text;
+end;
+
+procedure TMainForm.Edit11Change(Sender: TObject);
+begin
+  Edit14.Text := Edit11.Text;
+  Edit8.Text := Edit11.Text;
+end;
+
+//------------------------------------------------------------------------------
 
 end.

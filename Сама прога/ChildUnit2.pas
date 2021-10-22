@@ -36,11 +36,13 @@ begin
 end;
 
 procedure TChildForm2.PaintBox1Paint(Sender: TObject);
-var counter: integer; maxx, maxy: real;
+var counter, j2: integer; maxx, maxy: real;
+begin
+For j2 := 0 to length(MainForm.pictureA) - 1 do
 begin
   SetLength(A, 1);
-  A[0][1] := MainForm.V * cos(MainForm.al * pi/180);                            //Переводим данную нам скорость на ее проекции на оси плоскости
-  A[0][2] := MainForm.V * sin(MainForm.al * pi/180);
+  A[0][1] := MainForm.pictureA[j2].V * cos(MainForm.pictureA[j2].al * pi/180);                            //Переводим данную нам скорость на ее проекции на оси плоскости
+  A[0][2] := MainForm.pictureA[j2].V * sin(MainForm.pictureA[j2].al * pi/180);
 
   A[0][3] := 0;
   A[0][4] := 0;
@@ -84,5 +86,6 @@ begin
         LineTo({(Width div Round(maxy)) * }Round(A[counter][3]), {(Height div Round(maxy)) * }Round(Height - A[counter][4]));
     end;
   end;
+end;
 end;
 end.

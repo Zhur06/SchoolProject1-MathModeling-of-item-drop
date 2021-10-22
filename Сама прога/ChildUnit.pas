@@ -41,16 +41,18 @@ begin
 end;
 
 procedure TChildForm.PaintBox1Paint(Sender: TObject);
-var counter, j1, otstup, otstup2: integer;
+var counter, j1, j2, otstup, otstup2: integer;
 begin
   otstup := 20;
   otstup2 := 15;
 
+For j2 := 0 to length(MainForm.hA) - 1 do
+begin
   t := 0;
   setlength(A, 1);
   A[t][1] := 0;                                             //1 - скорость
   A[t][2] := 0;                                             //2 - пройтенный путь
-  While A[t][2] < MainForm.h do                             //Цикл который увеличивает время на 1 секунду и высчитывает для нее скорость и пройденный путь с условием выхода что пройденный путь стал больше чем начальная высота
+  While A[t][2] < MainForm.hA[j2].h do                             //Цикл который увеличивает время на 1 секунду и высчитывает для нее скорость и пройденный путь с условием выхода что пройденный путь стал больше чем начальная высота
   begin
     t := t + 1;                                             //Увеличение времени на секунду
 
@@ -65,10 +67,10 @@ begin
   With PaintBox1, canvas do     //Отрисовка этого массива
   begin
     Brush.Color := clWhite;                                                     //Установка цвета кисти
-    Pen.Color := MainForm.Color;
+    Pen.Color := MainForm.hA[j2].Color;
     Pen.Width := 1;
     Pen.Style := psSolid;
-
+    {
     MoveTo(0, Height - otstup);
     LineTo(Width, Height - otstup);
     MoveTo(otstup, 0);
@@ -88,7 +90,7 @@ begin
       LineTo(otstup + (j1*otstup2), Height - otstup + 5);
 
       TextOut(otstup + (j1*otstup2), Height - otstup, IntToStr(j1 div (Width - otstup) div Round(A[t][1])));  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    end;
+    end;  }
 
 
     MoveTo(otstup, Height - otstup);                                            //Перемещение начала линии в левый нижний угол
@@ -105,6 +107,7 @@ begin
         LineTo(counter, Round(Height - A[counter div (Width div t) + 1][1] * (Height div round(A[t][1]))));
     end;}
   end;
+end;
 end;
 
 end.

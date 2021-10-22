@@ -29,19 +29,22 @@ uses MainUnit;
 {$R *.dfm}
 
 procedure TChildForm3.PaintBox1Paint(Sender: TObject);
-var counter: integer;
+var counter, j2: integer;
 begin
   t := 0;
   setlength(A, 1);
   A[t][1] := 0;                                             //1 - скорость
   A[t][2] := 0;                                             //2 - пройтенный путь
-  While A[t][2] < MainForm.h do                             //Цикл который увеличивает время на 1 секунду и высчитывает для нее скорость и пройденный путь с условием выхода что пройденный путь стал больше чем начальная высота
+
+For j2 := 0 to length(MainForm.hA) - 1 do
+begin
+  While A[t][2] < MainForm.hA[j2].h do                             //Цикл который увеличивает время на 1 секунду и высчитывает для нее скорость и пройденный путь с условием выхода что пройденный путь стал больше чем начальная высота
   begin
     t := t + 1;                                             //Увеличение времени на секунду
 
     SetLength(A, length(A) + 1);                            //Увеличение размера массива с данными
 
-    A[t][1] := t * MainForm.g;                            //просчет скорости по формуле v = at
+    A[t][1] := t * MainForm.g[j2];                            //просчет скорости по формуле v = at
     A[t][2] := A[t - 1][2] + A[t][1];  //Просчет пройденного пути  S = S0 + vt
   end;
 
@@ -69,6 +72,7 @@ begin
         LineTo(counter, Round(Height - A[counter div (Width div t) + 1][1] * (Height div round(A[t][1]))));
     end;}
   end;
+end;
 end;
 
 end.
