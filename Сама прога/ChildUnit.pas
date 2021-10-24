@@ -70,8 +70,8 @@ begin
     Pen.Color := MainForm.hA[j2].Color;
     Pen.Width := 1;
     Pen.Style := psSolid;
-    {
-    MoveTo(0, Height - otstup);
+
+    MoveTo(0, Height - otstup);                                                 //создание осей и делений на них !!!! вывод€тс€ последние значени€
     LineTo(Width, Height - otstup);
     MoveTo(otstup, 0);
     LineTo(otstup, Height);
@@ -89,8 +89,8 @@ begin
       MoveTo(otstup + (j1*otstup2), Height - otstup - 5);
       LineTo(otstup + (j1*otstup2), Height - otstup + 5);
 
-      TextOut(otstup + (j1*otstup2), Height - otstup, IntToStr(j1 div (Width - otstup) div Round(A[t][1])));  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    end;  }
+      TextOut(otstup + (j1*otstup2), Height - otstup, IntToStr(Round(j1 / ((Width - otstup) / Round(A[t][1])))));
+    end;
 
 
     MoveTo(otstup, Height - otstup);                                            //ѕеремещение начала линии в левый нижний угол
@@ -99,14 +99,6 @@ begin
     begin
       LineTo(((Width - otstup) div t) * counter + otstup, Round((Height - otstup) - A[counter][1]));
     end;
-
-    {
-    For counter := 0 to Width do                                                //÷икл рисовани€ линий по точкам графика
-    begin
-      if counter div (Width div t) + 2 <= length(A) then
-        LineTo(counter, Round(Height - A[counter div (Width div t) + 1][1] * (Height div round(A[t][1]))));
-    end;}
-  end;
 end;
 end;
 

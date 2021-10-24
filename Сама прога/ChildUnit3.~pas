@@ -29,22 +29,25 @@ uses MainUnit;
 {$R *.dfm}
 
 procedure TChildForm3.PaintBox1Paint(Sender: TObject);
-var counter, j2: integer;
+var counter, j1,  j2, otstup, otstup2: integer;
+begin
+  otstup := 20;
+  otstup2 := 15;
+
+For j2 := 0 to length(MainForm.hA) - 1 do
 begin
   t := 0;
   setlength(A, 1);
   A[t][1] := 0;                                             //1 - скорость
-  A[t][2] := 0;                                             //2 - пройтенный путь
+  A[t][2] := 0;                                             //2 - пройденный путь
 
-For j2 := 0 to length(MainForm.hA) - 1 do
-begin
   While A[t][2] < MainForm.hA[j2].h do                             //÷икл который увеличивает врем€ на 1 секунду и высчитывает дл€ нее скорость и пройденный путь с условием выхода что пройденный путь стал больше чем начальна€ высота
   begin
     t := t + 1;                                             //”величение времени на секунду
 
-    SetLength(A, length(A) + 1);                            //”величение размера массива с данными
+    SetLength(A, length(A) + 1);                            //”величение размера массива с данным
 
-    A[t][1] := t * MainForm.g[j2];                            //просчет скорости по формуле v = at
+    A[t][1] := t * MainForm.hA[j2].g;                            //просчет скорости по формуле v = at
     A[t][2] := A[t - 1][2] + A[t][1];  //ѕросчет пройденного пути  S = S0 + vt
   end;
 
@@ -52,17 +55,38 @@ begin
   if t <> 0 then
   With PaintBox1, canvas do     //ќтрисовка этого массива
   begin
-    Brush.Color := clBlack;                                                     //”становка цвета кисти
+    Brush.Color := clWhite;                                                     //”становка цвета кисти
     Pen.Color := clBlack;
     Pen.Width := 1;
     Pen.Style := psSolid;
 
+    MoveTo(0, Height - otstup);                                                 //создание осей и делений на них !!!! вывод€тс€ последние значени€
+    LineTo(Width, Height - otstup);
+    MoveTo(otstup, 0);
+    LineTo(otstup, Height);
 
-    MoveTo(0, Height);                                                          //ѕеремещение начала линии в левый нижний угол
+    For j1 := 1 to (Height div otstup2) - 1 do                                  //¬ертикальна€ ось
+    begin
+      MoveTo(otstup - 5, Height - otstup - (j1*otstup2));
+      LineTo(otstup + 5, Height - otstup - (j1*otstup2));
+
+      TextOut(0, Height - otstup - (j1*otstup2), IntToStr(j1 * otstup2));
+    end;
+
+    For j1 := 1 to (Width div 10) - 1 do                                        //горизонтальна€ ось
+    begin
+      MoveTo(otstup + (j1*otstup2), Height - otstup - 5);
+      LineTo(otstup + (j1*otstup2), Height - otstup + 5);
+
+      TextOut(otstup + (j1*otstup2), Height - 1 - otstup, IntToStr(Round(j1 / ((Width - otstup) / Round(A[t][1])))));
+    end;
+
+
+    MoveTo(otstup, Height - otstup);                                            //ѕеремещение начала линии в левый нижний угол
 
     For counter := 0 to t do
     begin
-      LineTo((Width div t) * counter, Round(Height - A[counter][1]));
+      LineTo(((Width - otstup) div t) * counter + otstup, Round((Height - otstup) - A[counter][1]));
     end;
 
     {
