@@ -55,7 +55,6 @@ type
     Button10: TButton;
     Button11: TButton;
     Button12: TButton;
-    PopupMenu1: TPopupMenu;
     GroupBox2: TGroupBox;
     Edit6: TEdit;
     Edit7: TEdit;
@@ -80,6 +79,15 @@ type
     Panel8: TPanel;
     Panel9: TPanel;
     Button15: TButton;
+    GroupBox5: TGroupBox;
+    Button16: TButton;
+    Button17: TButton;
+    GroupBox6: TGroupBox;
+    Button18: TButton;
+    Button19: TButton;
+    GroupBox7: TGroupBox;
+    Button20: TButton;
+    Button21: TButton;
     procedure h1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -116,10 +124,11 @@ type
     procedure Edit8Change(Sender: TObject);
     procedure Edit14Change(Sender: TObject);
     procedure Edit11Change(Sender: TObject);
+    procedure Button17Click(Sender: TObject);
+    procedure Button16Click(Sender: TObject);
   private
     { Private declarations }
   public
-    //g: Array of integer;
     hA: Array of Col;
     pictureA: array of Pic;
     { Public declarations }
@@ -639,5 +648,257 @@ begin
 end;
 
 //------------------------------------------------------------------------------
+
+procedure TMainForm.Button17Click(Sender: TObject);
+var Max1, Max2: integer;
+begin
+  Canvas.Font.Size := Canvas.Font.Size + 1;
+  //изменение ширины всех кнопок и т.д.
+
+  Max1 := Canvas.TextWidth('—читать данные из €чеек') + 4;
+  Max2 := Canvas.TextHeight('—читать данные из €чеек') + 4;
+
+  //√рафик только от h
+  Edit1.Font.Size := Canvas.Font.Size;
+  Button2.Font.Size := Canvas.Font.Size;
+  Button3.Font.Size := Canvas.Font.Size;
+  Button1.Font.Size := Canvas.Font.Size;
+  Button10.Font.Size := Canvas.Font.Size;
+
+  Button13.Font.Size := Canvas.Font.Size;
+  Edit6.Font.Size := Canvas.Font.Size;
+  Edit7.Font.Size := Canvas.Font.Size;
+  Edit8.Font.Size := Canvas.Font.Size;
+
+  Edit1.Width := Max1;
+  Button2.Width := Max1;
+  Button3.Width := Max1;
+  Button1.Width := Max1;
+  Button10.Width := Max1;
+
+  Button13.Width := Max1;
+  Edit6.Width := Max1 - 24;
+  Edit7.Width := Max1 - 24;
+  Edit8.Width := Max1 - 24;
+
+  Edit1.Height := Max2;
+  Button2.Height := Max2;
+  Button3.Height := Max2;
+  Button1.Height := Max2;
+  Button10.Height := Max2;
+
+  Button13.Height := Max2;
+  Edit6.Height := Max2;
+  Edit7.Height := Max2;
+  Edit8.Height := Max2;
+
+  //–исунок броска тела
+  Edit2.Font.Size := Canvas.Font.Size;
+  Edit3.Font.Size := Canvas.Font.Size;
+  Button4.Font.Size := Canvas.Font.Size;
+  Button5.Font.Size := Canvas.Font.Size;
+  Button6.Font.Size := Canvas.Font.Size;
+  Button11.Font.Size := Canvas.Font.Size;
+
+  Button15.Font.Size := Canvas.Font.Size;
+  Edit12.Font.Size := Canvas.Font.Size;
+  Edit13.Font.Size := Canvas.Font.Size;
+  Edit14.Font.Size := Canvas.Font.Size;
+
+  Edit2.Width := Max1;
+  Edit3.Width := Max1;
+  Button4.Width := Max1;
+  Button5.Width := Max1;
+  Button6.Width := Max1;
+  Button11.Width := Max1;
+
+  Button15.Width := Max1;
+  Edit12.Width := Max1 - 24;
+  Edit13.Width := Max1 - 24;
+  Edit14.Width := Max1 - 24;
+
+  Edit2.Height := Max2;
+  Edit3.Height := Max2;
+  Button4.Height := Max2;
+  Button5.Height := Max2;
+  Button6.Height := Max2;
+  Button11.Height := Max2;
+
+  Button15.Height := Max2;
+  Edit12.Height := Max2;
+  Edit13.Height := Max2;
+  Edit14.Height := Max2;
+
+  //график падени€ от h и g
+  Edit4.Font.Size := Canvas.Font.Size;
+  Edit5.Font.Size := Canvas.Font.Size;
+  Button7.Font.Size := Canvas.Font.Size;
+  Button8.Font.Size := Canvas.Font.Size;
+  Button9.Font.Size := Canvas.Font.Size;
+  Button12.Font.Size := Canvas.Font.Size;
+
+  Button14.Font.Size := Canvas.Font.Size;
+  Edit9.Font.Size := Canvas.Font.Size;
+  Edit10.Font.Size := Canvas.Font.Size;
+  Edit11.Font.Size := Canvas.Font.Size;
+
+  Edit4.Width := Max1;
+  Edit5.Width := Max1;
+  Button7.Width := Max1;
+  Button8.Width := Max1;
+  Button9.Width := Max1;
+  Button12.Width := Max1;
+
+  Button14.Width := Max1;
+  Edit9.Width := Max1 - 24;
+  Edit10.Width := Max1 - 24;
+  Edit11.Width := Max1 - 24;
+
+  Edit4.Height := Max2;
+  Edit5.Height := Max2;
+  Button7.Height := Max2;
+  Button8.Height := Max2;
+  Button9.Height := Max2;
+  Button12.Height := Max2;
+
+  Button14.Height := Max2;
+  Edit9.Height := Max2;
+  Edit10.Height := Max2;
+  Edit11.Height := Max2;
+
+  //¬се страницы
+  PageControl1.Width := 24 + Max1;
+  GroupBox1.Width := 24 + Max1;
+  GroupBox2.Width := 24 + Max1;
+  GroupBox3.Width := 24 + Max1;
+  GroupBox4.Width := 24 + Max1;
+  GroupBox5.Width := 24 + Max1;
+end;
+
+procedure TMainForm.Button16Click(Sender: TObject);
+var Max1, Max2: integer;
+begin
+  Canvas.Font.Size := Canvas.Font.Size - 1;
+  //изменение ширины всех кнопок и т.д.
+
+  Max1 := Canvas.TextWidth('—читать данные из €чеек') + 4;
+  Max2 := Canvas.TextHeight('—читать данные из €чеек') + 4;
+
+  //√рафик только от h
+  Edit1.Font.Size := Canvas.Font.Size;
+  Button2.Font.Size := Canvas.Font.Size;
+  Button3.Font.Size := Canvas.Font.Size;
+  Button1.Font.Size := Canvas.Font.Size;
+  Button10.Font.Size := Canvas.Font.Size;
+
+  Button13.Font.Size := Canvas.Font.Size;
+  Edit6.Font.Size := Canvas.Font.Size;
+  Edit7.Font.Size := Canvas.Font.Size;
+  Edit8.Font.Size := Canvas.Font.Size;
+
+  Edit1.Width := Max1;
+  Button2.Width := Max1;
+  Button3.Width := Max1;
+  Button1.Width := Max1;
+  Button10.Width := Max1;
+
+  Button13.Width := Max1;
+  Edit6.Width := Max1 - 24;
+  Edit7.Width := Max1 - 24;
+  Edit8.Width := Max1 - 24;
+
+  Edit1.Height := Max2;
+  Button2.Height := Max2;
+  Button3.Height := Max2;
+  Button1.Height := Max2;
+  Button10.Height := Max2;
+
+  Button13.Height := Max2;
+  Edit6.Height := Max2;
+  Edit7.Height := Max2;
+  Edit8.Height := Max2;
+
+  //–исунок броска тела
+  Edit2.Font.Size := Canvas.Font.Size;
+  Edit3.Font.Size := Canvas.Font.Size;
+  Button4.Font.Size := Canvas.Font.Size;
+  Button5.Font.Size := Canvas.Font.Size;
+  Button6.Font.Size := Canvas.Font.Size;
+  Button11.Font.Size := Canvas.Font.Size;
+
+  Button15.Font.Size := Canvas.Font.Size;
+  Edit12.Font.Size := Canvas.Font.Size;
+  Edit13.Font.Size := Canvas.Font.Size;
+  Edit14.Font.Size := Canvas.Font.Size;
+
+  Edit2.Width := Max1;
+  Edit3.Width := Max1;
+  Button4.Width := Max1;
+  Button5.Width := Max1;
+  Button6.Width := Max1;
+  Button11.Width := Max1;
+
+  Button15.Width := Max1;
+  Edit12.Width := Max1 - 24;
+  Edit13.Width := Max1 - 24;
+  Edit14.Width := Max1 - 24;
+
+  Edit2.Height := Max2;
+  Edit3.Height := Max2;
+  Button4.Height := Max2;
+  Button5.Height := Max2;
+  Button6.Height := Max2;
+  Button11.Height := Max2;
+
+  Button15.Height := Max2;
+  Edit12.Height := Max2;
+  Edit13.Height := Max2;
+  Edit14.Height := Max2;
+
+  //график падени€ от h и g
+  Edit4.Font.Size := Canvas.Font.Size;
+  Edit5.Font.Size := Canvas.Font.Size;
+  Button7.Font.Size := Canvas.Font.Size;
+  Button8.Font.Size := Canvas.Font.Size;
+  Button9.Font.Size := Canvas.Font.Size;
+  Button12.Font.Size := Canvas.Font.Size;
+
+  Button14.Font.Size := Canvas.Font.Size;
+  Edit9.Font.Size := Canvas.Font.Size;
+  Edit10.Font.Size := Canvas.Font.Size;
+  Edit11.Font.Size := Canvas.Font.Size;
+
+  Edit4.Width := Max1;
+  Edit5.Width := Max1;
+  Button7.Width := Max1;
+  Button8.Width := Max1;
+  Button9.Width := Max1;
+  Button12.Width := Max1;
+
+  Button14.Width := Max1;
+  Edit9.Width := Max1 - 24;
+  Edit10.Width := Max1 - 24;
+  Edit11.Width := Max1 - 24;
+
+  Edit4.Height := Max2;
+  Edit5.Height := Max2;
+  Button7.Height := Max2;
+  Button8.Height := Max2;
+  Button9.Height := Max2;
+  Button12.Height := Max2;
+
+  Button14.Height := Max2;
+  Edit9.Height := Max2;
+  Edit10.Height := Max2;
+  Edit11.Height := Max2;
+
+  //¬се страницы
+  PageControl1.Width := 24 + Max1;
+  GroupBox1.Width := 24 + Max1;
+  GroupBox2.Width := 24 + Max1;
+  GroupBox3.Width := 24 + Max1;
+  GroupBox4.Width := 24 + Max1;
+  GroupBox5.Width := 24 + Max1;
+end;
 
 end.

@@ -63,7 +63,7 @@ begin
   For counter := 0 to t do                                                      //нахождение максимальных значений x и y
   begin
     if A[counter][3] > maxx then maxx := A[counter][3];
-    if A[counter][4] > maxx then maxx := A[counter][4];
+    if A[counter][4] > maxy then maxy := A[counter][4];
   end;
 
 //-------------------------Отрисовка--------------------------------------------
@@ -71,8 +71,8 @@ begin
   if t <> 0 then
   With PaintBox1, Canvas do
   begin
-    Brush.Color := clBlack;                                                     //Установка цвета кисти
-    Pen.Color := clBlack;
+    Brush.Color := clWhite;                                                     //Установка цвета кисти
+    Pen.Color := MainForm.pictureA[j2].color;
     Pen.Width := 1;
     Pen.Style := psSolid;
 
@@ -80,10 +80,16 @@ begin
 
     For counter := 0 to t do
     begin
-      if maxx >= maxy then
-        LineTo({(Width div Round(maxx)) * }Round(A[counter][3]), {(Height div Round(maxx)) * }Round(Height - A[counter][4]))
-      else
-        LineTo({(Width div Round(maxy)) * }Round(A[counter][3]), {(Height div Round(maxy)) * }Round(Height - A[counter][4]));
+      {if ((Width - maxx) >= (Height - maxy)) then  }
+        if Width >= Height then
+          LineTo(Round((Width / maxx) * A[counter][3]), Round(Height - ((Width / maxx) * A[counter][4])))
+        else
+          LineTo(Round((Height / maxx) * A[counter][3]), Round(Height - ((Height / maxx) *  A[counter][4])));
+      {else  //uncorrect way
+        if Width >= Height then //Uncorrect way
+          LineTo(Round((Width / maxy) * A[counter][3]), Round(Height - ((Width / maxy) * A[counter][4])))
+        else
+          LineTo(Round((Height / maxy) * A[counter][3]), Round((Height - ((Height / maxy) * A[counter][4])))); }
     end;
   end;
 end;
