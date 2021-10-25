@@ -99,14 +99,6 @@ begin
     begin
       LineTo(((Width - otstup) div t) * counter + otstup, Round((Height - otstup) - A[counter][1]));
     end;
-
-    {
-    For counter := 0 to Width do                                                //Цикл рисования линий по точкам графика
-    begin
-      if counter div (Width div t) + 2 <= length(A) then
-        LineTo(counter, Round(Height - A[counter div (Width div t) + 1][1] * (Height div round(A[t][1]))));
-    end;}
-  end;
 end;
 end;
 

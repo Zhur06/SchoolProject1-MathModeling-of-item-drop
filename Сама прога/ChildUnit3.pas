@@ -11,6 +11,7 @@ type
   TChildForm3 = class(TForm)
     PaintBox1: TPaintBox;
     procedure PaintBox1Paint(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -89,6 +90,13 @@ begin
       LineTo(((Width - otstup) div t) * counter + otstup, Round((Height - otstup) - A[counter][1]));
     end;
 end;
+end;
+end;
+
+procedure TChildForm3.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+  MainForm.CF3 :=  MainForm.CF3 - 1;
 end;
 
 end.

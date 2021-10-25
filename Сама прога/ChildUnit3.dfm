@@ -14,6 +14,7 @@ object ChildForm3: TChildForm3
   OldCreateOrder = False
   Position = poDefault
   Visible = True
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object PaintBox1: TPaintBox

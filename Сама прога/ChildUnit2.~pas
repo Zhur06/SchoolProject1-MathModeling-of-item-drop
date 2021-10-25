@@ -80,16 +80,16 @@ begin
 
     For counter := 0 to t do
     begin
-      if ((Width - maxx) >= (Height - maxy)) then
+      {if ((Width - maxx) >= (Height - maxy)) then  }
         if Width >= Height then
           LineTo(Round((Width / maxx) * A[counter][3]), Round(Height - ((Width / maxx) * A[counter][4])))
         else
-          LineTo(Round((Height / maxx) * A[counter][3]), Round(Height - ((Height / maxx) *  A[counter][4])))//;
-      else  //uncorrect way
+          LineTo(Round((Height / maxx) * A[counter][3]), Round(Height - ((Height / maxx) *  A[counter][4])));
+      {else  //uncorrect way
         if Width >= Height then //Uncorrect way
           LineTo(Round((Width / maxy) * A[counter][3]), Round(Height - ((Width / maxy) * A[counter][4])))
         else
-          LineTo(Round((Height / maxy) * A[counter][3]), Round((Height - ((Height / maxy) * A[counter][4]))));
+          LineTo(Round((Height / maxy) * A[counter][3]), Round((Height - ((Height / maxy) * A[counter][4])))); }
     end;
   end;
 end;

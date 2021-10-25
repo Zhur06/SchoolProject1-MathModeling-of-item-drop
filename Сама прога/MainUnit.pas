@@ -48,10 +48,6 @@ type
     Button8: TButton;
     Button9: TButton;
     hg1: TMenuItem;
-    N3: TMenuItem;
-    h2: TMenuItem;
-    hg2: TMenuItem;
-    v2: TMenuItem;
     Button10: TButton;
     Button11: TButton;
     Button12: TButton;
@@ -131,6 +127,7 @@ type
   public
     hA: Array of Col;
     pictureA: array of Pic;
+    CF, CF2, CF3: integer;
     { Public declarations }
   end;
 
@@ -149,6 +146,7 @@ uses ChildUnit, IniFiles, ChildUnit2, ChildUnit3, ChildUnit4;
 
 procedure TMainForm.h1Click(Sender: TObject);
 begin
+  CF := CF + 1;
   ChildForm := TChildForm.Create(Self);
 end;
 
@@ -174,7 +172,7 @@ begin
   hA[length(hA) - 1].g := 10;
   hA[length(hA) - 1].color := clBlack;
 
-  if Assigned(ChildForm) then
+  if CF <> 0 then
     ChildForm.PaintBox1Paint(Self);
 end;
 
@@ -196,7 +194,7 @@ begin
       ini.Free;
     end;
   end;
-  if Assigned(ChildForm) then
+  if CF <> 0 then
     ChildForm.PaintBox1Paint(Self);
 end;
 
@@ -228,6 +226,7 @@ end;
 
 procedure TMainForm.v1Click(Sender: TObject);
 begin
+  CF2 := CF2 + 1;
   ChildForm2 := TChildForm2.Create(Self);
 end;
 
@@ -261,7 +260,7 @@ begin
   pictureA[length(pictureA) - 1].al := StrToInt(str);
   pictureA[length(pictureA) - 1].Color := clBlack;
 
-  if Assigned(ChildForm2) then
+  if CF2 <> 0 then
     ChildForm2.PaintBox1Paint(Self);
 end;
 
@@ -286,7 +285,7 @@ begin
     end;
   end;
 
-  if Assigned(ChildForm2) then
+  if CF2 <> 0 then
     ChildForm2.PaintBox1Paint(Self);
 end;
 
@@ -329,6 +328,7 @@ end;
 
 procedure TMainForm.hg1Click(Sender: TObject);
 begin
+  CF3 := CF3 + 1;
   ChildForm3 := TChildForm3.Create(Self);
 end;
 
@@ -362,7 +362,7 @@ begin
   end;
   hA[length(hA) - 1].g := StrToInt(str);
 
-  if Assigned(ChildForm3) then
+  if CF3 <> 0 then
     ChildForm3.PaintBox1Paint(Self);
 end;
 
@@ -385,7 +385,7 @@ begin
       ini.Free;
     end;
   end;
-  if Assigned(ChildForm3) then
+  if CF3 <> 0 then
     ChildForm3.PaintBox1Paint(Self);
 end;
 
@@ -531,16 +531,19 @@ end;
 procedure TMainForm.Button10Click(Sender: TObject);
 begin
   ChildForm := TChildForm.Create(Self);
+  CF := CF + 1;
 end;
 
 procedure TMainForm.Button11Click(Sender: TObject);
 begin
   ChildForm2 := TChildForm2.Create(Self);
+  CF2 := CF2 + 1;
 end;
 
 procedure TMainForm.Button12Click(Sender: TObject);
 begin
   ChildForm3 := TChildForm3.Create(Self);
+  CF3 := CF3 + 1;
 end;
 
 //################# »«Ã≈Õ≈Õ»≈ ÷¬≈“Œ¬ √–¿‘» Œ¬ ##################################

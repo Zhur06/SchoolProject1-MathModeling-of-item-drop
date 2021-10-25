@@ -38,6 +38,7 @@ uses MainUnit, IniFiles;
 procedure TChildForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
+  MainForm.CF :=  MainForm.CF - 1;
 end;
 
 procedure TChildForm.PaintBox1Paint(Sender: TObject);
@@ -99,6 +100,7 @@ begin
     begin
       LineTo(((Width - otstup) div t) * counter + otstup, Round((Height - otstup) - A[counter][1]));
     end;
+end;
 end;
 end;
 
