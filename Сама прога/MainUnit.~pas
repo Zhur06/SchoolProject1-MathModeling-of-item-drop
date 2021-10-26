@@ -569,6 +569,7 @@ begin
     end;
   end;
   r := StrToInt(str);
+  if r > 255 then r := 255;
 
   str := Edit7.Text;
   for c:=1 to length(str) do
@@ -580,6 +581,7 @@ begin
     end;
   end;
   g := StrToInt(str);
+  if g > 255 then g := 255;
 
   str := Edit8.Text;
   for c:=1 to length(str) do
@@ -591,12 +593,13 @@ begin
     end;
   end;
   b := StrToInt(str);
+  if b > 255 then b := 255;
 
   if length(hA) > 0 then hA[length(hA) - 1].color := RGB(r, g, b);
   if length(pictureA) > 0 then pictureA[length(pictureA) - 1].color := RGB(r, g, b);
 end;
 
-//----------------- Синхронизация ечеек изменения цвета ------------------------
+//----------------- Синхронизация ячеек изменения цвета ------------------------
 
 procedure TMainForm.Edit6Change(Sender: TObject);
 begin

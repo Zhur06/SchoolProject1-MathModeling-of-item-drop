@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 667
-  Top = 170
+  Left = 580
+  Top = 48
   Width = 889
   Height = 725
   Caption = #1054#1089#1085#1086#1074#1085#1086#1077' '#1086#1082#1085#1086
@@ -111,7 +111,10 @@ object MainForm: TMainForm
             Width = 121
             Height = 21
             TabOrder = 0
+            Text = '0'
             OnChange = Edit6Change
+            OnEnter = Edit6Enter
+            OnExit = Edit6Exit
           end
           object Edit7: TEdit
             Left = 40
@@ -119,7 +122,10 @@ object MainForm: TMainForm
             Width = 121
             Height = 21
             TabOrder = 1
+            Text = '0'
             OnChange = Edit7Change
+            OnEnter = Edit7Enter
+            OnExit = Edit7Exit
           end
           object Edit8: TEdit
             Left = 40
@@ -127,7 +133,10 @@ object MainForm: TMainForm
             Width = 121
             Height = 21
             TabOrder = 2
+            Text = '0'
             OnChange = Edit8Change
+            OnEnter = Edit8Enter
+            OnExit = Edit8Exit
           end
           object Panel1: TPanel
             Left = 16
@@ -283,6 +292,7 @@ object MainForm: TMainForm
             Width = 121
             Height = 21
             TabOrder = 0
+            Text = '0'
             OnChange = Edit12Change
           end
           object Edit13: TEdit
@@ -291,6 +301,7 @@ object MainForm: TMainForm
             Width = 121
             Height = 21
             TabOrder = 1
+            Text = '0'
             OnChange = Edit13Change
           end
           object Edit14: TEdit
@@ -299,6 +310,7 @@ object MainForm: TMainForm
             Width = 121
             Height = 21
             TabOrder = 2
+            Text = '0'
             OnChange = Edit14Change
           end
           object Panel7: TPanel
@@ -482,6 +494,7 @@ object MainForm: TMainForm
             Width = 121
             Height = 21
             TabOrder = 0
+            Text = '0'
             OnChange = Edit9Change
           end
           object Edit10: TEdit
@@ -490,6 +503,7 @@ object MainForm: TMainForm
             Width = 121
             Height = 21
             TabOrder = 1
+            Text = '0'
             OnChange = Edit10Change
           end
           object Edit11: TEdit
@@ -498,6 +512,7 @@ object MainForm: TMainForm
             Width = 121
             Height = 21
             TabOrder = 2
+            Text = '0'
             OnChange = Edit11Change
           end
           object Panel4: TPanel

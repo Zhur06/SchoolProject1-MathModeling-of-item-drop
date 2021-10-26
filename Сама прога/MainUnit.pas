@@ -127,6 +127,12 @@ type
     procedure Button16Click(Sender: TObject);
     procedure Button22Click(Sender: TObject);
     procedure Button23Click(Sender: TObject);
+    procedure Edit6Enter(Sender: TObject);
+    procedure Edit6Exit(Sender: TObject);
+    procedure Edit7Enter(Sender: TObject);
+    procedure Edit7Exit(Sender: TObject);
+    procedure Edit8Enter(Sender: TObject);
+    procedure Edit8Exit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -569,6 +575,7 @@ begin
     end;
   end;
   r := StrToInt(str);
+  if r > 255 then r := 255;
 
   str := Edit7.Text;
   for c:=1 to length(str) do
@@ -580,6 +587,7 @@ begin
     end;
   end;
   g := StrToInt(str);
+  if g > 255 then g := 255;
 
   str := Edit8.Text;
   for c:=1 to length(str) do
@@ -591,12 +599,13 @@ begin
     end;
   end;
   b := StrToInt(str);
+  if b > 255 then b := 255;
 
   if length(hA) > 0 then hA[length(hA) - 1].color := RGB(r, g, b);
   if length(pictureA) > 0 then pictureA[length(pictureA) - 1].color := RGB(r, g, b);
 end;
 
-//----------------- Синхронизация ечеек изменения цвета ------------------------
+//----------------- Синхронизация ячеек изменения цвета ------------------------
 
 procedure TMainForm.Edit6Change(Sender: TObject);
 begin
@@ -918,6 +927,42 @@ end;
 procedure TMainForm.Button23Click(Sender: TObject);
 begin
   Sizing := False;
+end;
+
+procedure TMainForm.Edit6Enter(Sender: TObject);
+begin
+  if Edit6.Text = 'You have typed something that was not a number' then Edit6.Text := ''
+  else if Edit6.Text = '0' then Edit6.Text := '';
+end;
+
+procedure TMainForm.Edit6Exit(Sender: TObject);
+begin
+  if Edit6.Text = 'You have typed something that was not a number' then Edit6.Text := '0'
+  else if Edit6.Text = '' then Edit6.Text := '0';
+end;
+
+procedure TMainForm.Edit7Enter(Sender: TObject);
+begin
+  if Edit7.Text = 'You have typed something that was not a number' then Edit7.Text := ''
+  else if Edit7.Text = '0' then Edit7.Text := '';
+end;
+
+procedure TMainForm.Edit7Exit(Sender: TObject);
+begin
+  if Edit7.Text = 'You have typed something that was not a number' then Edit7.Text := '0'
+  else if Edit7.Text = '' then Edit7.Text := '0';
+end;
+
+procedure TMainForm.Edit8Enter(Sender: TObject);
+begin
+  if Edit8.Text = 'You have typed something that was not a number' then Edit8.Text := ''
+  else if Edit8.Text = '0' then Edit8.Text := '';
+end;
+
+procedure TMainForm.Edit8Exit(Sender: TObject);
+begin
+  if Edit8.Text = 'You have typed something that was not a number' then Edit8.Text := '0'
+  else if Edit8.Text = '' then Edit8.Text := '0';
 end;
 
 end.
