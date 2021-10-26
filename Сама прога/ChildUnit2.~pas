@@ -33,6 +33,7 @@ uses MainUnit;
 procedure TChildForm2.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
     Action := caFree;
+    MainForm.CF2 :=  MainForm.CF2 - 1;
 end;
 
 procedure TChildForm2.PaintBox1Paint(Sender: TObject);

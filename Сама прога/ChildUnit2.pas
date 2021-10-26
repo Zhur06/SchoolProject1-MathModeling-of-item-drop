@@ -79,6 +79,7 @@ begin
 
     MoveTo(0, Height);                                                          //Перемещение начала линии в левый нижний угол
 
+  if MainForm.Sizing then
     For counter := 0 to t do
     begin
       {if ((Width - maxx) >= (Height - maxy)) then  }
@@ -91,6 +92,11 @@ begin
           LineTo(Round((Width / maxy) * A[counter][3]), Round(Height - ((Width / maxy) * A[counter][4])))
         else
           LineTo(Round((Height / maxy) * A[counter][3]), Round((Height - ((Height / maxy) * A[counter][4])))); }
+    end
+  else
+    For counter := 0 to t do
+    begin
+      LineTo(Round(A[counter][3]), Round(Height - A[counter][4]));
     end;
   end;
 end;

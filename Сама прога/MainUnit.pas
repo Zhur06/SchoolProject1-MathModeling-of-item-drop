@@ -84,6 +84,9 @@ type
     GroupBox7: TGroupBox;
     Button20: TButton;
     Button21: TButton;
+    GroupBox8: TGroupBox;
+    Button22: TButton;
+    Button23: TButton;
     procedure h1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -122,12 +125,15 @@ type
     procedure Edit11Change(Sender: TObject);
     procedure Button17Click(Sender: TObject);
     procedure Button16Click(Sender: TObject);
+    procedure Button22Click(Sender: TObject);
+    procedure Button23Click(Sender: TObject);
   private
     { Private declarations }
   public
     hA: Array of Col;
     pictureA: array of Pic;
     CF, CF2, CF3: integer;
+    Sizing: boolean;
     { Public declarations }
   end;
 
@@ -902,6 +908,16 @@ begin
   GroupBox3.Width := 24 + Max1;
   GroupBox4.Width := 24 + Max1;
   GroupBox5.Width := 24 + Max1;
+end;
+
+procedure TMainForm.Button22Click(Sender: TObject);
+begin
+  Sizing := true;
+end;
+
+procedure TMainForm.Button23Click(Sender: TObject);
+begin
+  Sizing := False;
 end;
 
 end.

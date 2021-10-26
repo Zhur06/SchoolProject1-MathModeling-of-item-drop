@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 607
-  Top = 190
+  Left = 667
+  Top = 170
   Width = 889
   Height = 725
   Caption = #1054#1089#1085#1086#1074#1085#1086#1077' '#1086#1082#1085#1086
@@ -106,7 +106,7 @@ object MainForm: TMainForm
           Caption = '  '#1042#1099#1073#1086#1088' '#1094#1074#1077#1090#1072' '#1075#1088#1072#1092#1080#1082#1072'  '
           TabOrder = 5
           object Edit6: TEdit
-            Left = 32
+            Left = 40
             Top = 24
             Width = 121
             Height = 21
@@ -114,7 +114,7 @@ object MainForm: TMainForm
             OnChange = Edit6Change
           end
           object Edit7: TEdit
-            Left = 32
+            Left = 40
             Top = 48
             Width = 121
             Height = 21
@@ -122,7 +122,7 @@ object MainForm: TMainForm
             OnChange = Edit7Change
           end
           object Edit8: TEdit
-            Left = 32
+            Left = 40
             Top = 72
             Width = 121
             Height = 21
@@ -130,7 +130,7 @@ object MainForm: TMainForm
             OnChange = Edit8Change
           end
           object Panel1: TPanel
-            Left = 8
+            Left = 16
             Top = 24
             Width = 17
             Height = 17
@@ -138,7 +138,7 @@ object MainForm: TMainForm
             TabOrder = 3
           end
           object Panel2: TPanel
-            Left = 8
+            Left = 16
             Top = 48
             Width = 17
             Height = 17
@@ -146,7 +146,7 @@ object MainForm: TMainForm
             TabOrder = 4
           end
           object Panel3: TPanel
-            Left = 8
+            Left = 16
             Top = 72
             Width = 17
             Height = 17
@@ -154,7 +154,7 @@ object MainForm: TMainForm
             TabOrder = 5
           end
           object Button13: TButton
-            Left = 8
+            Left = 16
             Top = 96
             Width = 145
             Height = 25
@@ -360,6 +360,33 @@ object MainForm: TMainForm
             Caption = '+'
             TabOrder = 1
             OnClick = Button17Click
+          end
+        end
+        object GroupBox8: TGroupBox
+          Left = 0
+          Top = 368
+          Width = 253
+          Height = 48
+          Align = alBottom
+          Caption = '  '#1052#1072#1089#1096#1090#1072#1073#1080#1088#1086#1074#1072#1085#1080#1077
+          TabOrder = 8
+          object Button22: TButton
+            Left = 8
+            Top = 16
+            Width = 41
+            Height = 25
+            Caption = 'On'
+            TabOrder = 0
+            OnClick = Button22Click
+          end
+          object Button23: TButton
+            Left = 56
+            Top = 16
+            Width = 41
+            Height = 25
+            Caption = 'Off'
+            TabOrder = 1
+            OnClick = Button23Click
           end
         end
       end
