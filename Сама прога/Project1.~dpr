@@ -13,6 +13,5 @@ uses
 begin
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);
-  Application.CreateForm(TChildForm5, ChildForm5);
   Application.Run;
 end.
