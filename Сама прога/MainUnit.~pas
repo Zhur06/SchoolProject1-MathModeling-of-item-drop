@@ -17,6 +17,8 @@ type
   public
     v: integer;
     al: integer;
+    m: integer;
+    k: integer;
     color: TColor;
   end;
 
@@ -87,6 +89,30 @@ type
     GroupBox8: TGroupBox;
     Button22: TButton;
     Button23: TButton;
+    TabSheet4: TTabSheet;
+    Edit15: TEdit;
+    Edit16: TEdit;
+    Edit17: TEdit;
+    Edit18: TEdit;
+    Button24: TButton;
+    Button25: TButton;
+    Button26: TButton;
+    Button27: TButton;
+    GroupBox9: TGroupBox;
+    Edit19: TEdit;
+    Edit20: TEdit;
+    Edit21: TEdit;
+    Panel10: TPanel;
+    Panel11: TPanel;
+    Panel12: TPanel;
+    Button28: TButton;
+    GroupBox10: TGroupBox;
+    Button29: TButton;
+    Button30: TButton;
+    N3: TMenuItem;
+    GroupBox11: TGroupBox;
+    Button31: TButton;
+    Button32: TButton;
     procedure h1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -127,12 +153,30 @@ type
     procedure Button16Click(Sender: TObject);
     procedure Button22Click(Sender: TObject);
     procedure Button23Click(Sender: TObject);
+    procedure Edit6Enter(Sender: TObject);
+    procedure Edit6Exit(Sender: TObject);
+    procedure Edit7Enter(Sender: TObject);
+    procedure Edit7Exit(Sender: TObject);
+    procedure Edit8Enter(Sender: TObject);
+    procedure Edit8Exit(Sender: TObject);
+    procedure Edit15Enter(Sender: TObject);
+    procedure Edit15Exit(Sender: TObject);
+    procedure Edit16Enter(Sender: TObject);
+    procedure Edit16Exit(Sender: TObject);
+    procedure Edit17Enter(Sender: TObject);
+    procedure Edit17Exit(Sender: TObject);
+    procedure Edit18Enter(Sender: TObject);
+    procedure Edit18Exit(Sender: TObject);
+    procedure Button27Click(Sender: TObject);
+    procedure Button24Click(Sender: TObject);
+    procedure Button26Click(Sender: TObject);
+    procedure Button25Click(Sender: TObject);
   private
     { Private declarations }
   public
     hA: Array of Col;
-    pictureA: array of Pic;
-    CF, CF2, CF3: integer;
+    pictureA, pictureA_noAtmosfere: array of Pic;
+    CF, CF2, CF3, CF5: integer;
     Sizing: boolean;
     { Public declarations }
   end;
@@ -142,7 +186,7 @@ var
 
 implementation
 
-uses ChildUnit, IniFiles, ChildUnit2, ChildUnit3, ChildUnit4;
+uses ChildUnit, IniFiles, ChildUnit2, ChildUnit3, ChildUnit4, ChildUnit5;
 
 {$R *.dfm}
 
@@ -921,6 +965,271 @@ end;
 procedure TMainForm.Button23Click(Sender: TObject);
 begin
   Sizing := False;
+end;
+
+procedure TMainForm.Edit6Enter(Sender: TObject);
+begin
+  if Edit6.Text = 'You have typed something that was not a number' then Edit6.Text := ''
+  else if Edit6.Text = '0' then Edit6.Text := '';
+end;
+
+procedure TMainForm.Edit6Exit(Sender: TObject);
+begin
+  if Edit6.Text = 'You have typed something that was not a number' then Edit6.Text := '0'
+  else if Edit6.Text = '' then Edit6.Text := '0';
+end;
+
+procedure TMainForm.Edit7Enter(Sender: TObject);
+begin
+  if Edit7.Text = 'You have typed something that was not a number' then Edit7.Text := ''
+  else if Edit7.Text = '0' then Edit7.Text := '';
+end;
+
+procedure TMainForm.Edit7Exit(Sender: TObject);
+begin
+  if Edit7.Text = 'You have typed something that was not a number' then Edit7.Text := '0'
+  else if Edit7.Text = '' then Edit7.Text := '0';
+end;
+
+procedure TMainForm.Edit8Enter(Sender: TObject);
+begin
+  if Edit8.Text = 'You have typed something that was not a number' then Edit8.Text := ''
+  else if Edit8.Text = '0' then Edit8.Text := '';
+end;
+
+procedure TMainForm.Edit8Exit(Sender: TObject);
+begin
+  if Edit8.Text = 'You have typed something that was not a number' then Edit8.Text := '0'
+  else if Edit8.Text = '' then Edit8.Text := '0';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit15Enter(Sender: TObject);
+begin
+  if Edit15.Text = 'Введите v' then Edit15.Text := ''
+  else if Edit15.Text = 'You have typed something that was not a number' then Edit15.Text := '';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit15Exit(Sender: TObject);
+var i: integer; numberic: boolean;
+begin
+  numberic := true;
+  For i := 0 to length(Edit15.Text) - 1 do
+    if i in [0..9] then numberic := false;
+  if numberic then Edit15.Text := 'Введите v';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit16Enter(Sender: TObject);
+begin
+  if Edit16.Text = 'Введите угол к горизонту' then Edit16.Text := ''
+  else if Edit16.Text = 'You have typed something that was not a number' then Edit16.Text := '';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit16Exit(Sender: TObject);
+var i: integer; numberic: boolean;
+begin
+  numberic := true;
+  For i := 0 to length(Edit16.Text) - 1 do
+    if i in [0..9] then numberic := false;
+  if numberic then Edit16.Text := 'Введите угол к горизонту';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit17Enter(Sender: TObject);
+begin
+  if Edit17.Text = 'Введите m' then Edit17.Text := ''
+  else if Edit17.Text = 'You have typed something that was not a number' then Edit17.Text := '';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit17Exit(Sender: TObject);
+var i: integer; numberic: boolean;
+begin
+  numberic := true;
+  For i := 0 to length(Edit17.Text) - 1 do
+    if i in [0..9] then numberic := false;
+  if numberic then Edit17.Text := 'Введите m';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit18Enter(Sender: TObject);
+begin
+  if Edit18.Text = 'Введите k сопротивления' then Edit18.Text := ''
+  else if Edit18.Text = 'You have typed something that was not a number' then Edit18.Text := '';
+end;
+
+//------------------------------------------------------------------------------
+
+procedure TMainForm.Edit18Exit(Sender: TObject);
+var i: integer; numberic: boolean;
+begin
+  numberic := true;
+  For i := 0 to length(Edit18.Text) - 1 do
+    if i in [0..9] then numberic := false;
+  if numberic then Edit18.Text := 'Введите k сопротивления';
+end;
+
+//################# Пятый Рисунок ##############################################
+
+//----------------- Создание рисунка -------------------------------------------
+
+procedure TMainForm.Button27Click(Sender: TObject);
+begin
+  CF5 := CF5 + 1;
+  ChildForm5 := TChildForm5.Create(Self);
+end;
+
+//----------------- Считывание данных для пятого рисунка -----------------------
+
+procedure TMainForm.Button24Click(Sender: TObject);
+var str: string; c: integer;
+begin
+  str := Edit15.Text;
+  for c:=1 to length(str) do
+  begin
+    if not (str[c] in ['0'..'9']) then
+    begin
+      Edit15.Text := 'You have typed something that was not a number';
+      EXIT;
+    end;
+  end;
+  SetLength(pictureA, length(pictureA) + 1);
+  pictureA[length(pictureA) - 1] := Pic.Create;
+  pictureA[length(pictureA) - 1].V := StrToInt(str);
+
+  str := Edit16.Text;
+  for c:=1 to length(str) do
+  begin
+    if not (str[c] in ['0'..'9']) then
+    begin
+      Edit16.Text := 'You have typed something that was not a number';
+      EXIT;
+    end;
+  end;
+  pictureA[length(pictureA) - 1].al := StrToInt(str);
+
+  str := Edit17.Text;
+  for c:=1 to length(str) do
+  begin
+    if not (str[c] in ['0'..'9']) then
+    begin
+      Edit17.Text := 'You have typed something that was not a number';
+      EXIT;
+    end;
+  end;
+  pictureA[length(pictureA) - 1].m := StrToInt(str);
+
+  str := Edit18.Text;
+  for c:=1 to length(str) do
+  begin
+    if not (str[c] in ['0'..'9']) then
+    begin
+      Edit18.Text := 'You have typed something that was not a number';
+      EXIT;
+    end;
+  end;
+  pictureA[length(pictureA) - 1].k := StrToInt(str);
+
+  pictureA[length(pictureA) - 1].Color := clBlack;
+
+  if CF5 <> 0 then
+    ChildForm5.PaintBox1Paint(Self);
+end;
+
+//----------------- Считывание данных для второго рисунка из файла -------------
+
+procedure TMainForm.Button26Click(Sender: TObject);
+var ini: TIniFile;
+begin
+  if OpenDialog1.Execute then
+  begin
+    ini := TIniFile.Create(OpenDialog1.FileName);
+    try
+      SetLength(pictureA, length(pictureA) + 1);
+      pictureA[length(pictureA) - 1] := Pic.Create;
+      pictureA[length(pictureA) - 1].v := ini.ReadInteger('2', 'v', 0);
+      Edit15.Text := IntToStr(pictureA[length(pictureA) - 1].v);
+
+      pictureA[length(pictureA) - 1].al := ini.ReadInteger('2', 'al', 0);
+      Edit16.Text := IntToStr(pictureA[length(pictureA) - 1].al);
+
+      pictureA[length(pictureA) - 1].m := ini.ReadInteger('2', 'm', 0);
+      Edit17.Text := IntToStr(pictureA[length(pictureA) - 1].m);
+
+      pictureA[length(pictureA) - 1].k := ini.ReadInteger('2', 'k', 0);
+      Edit18.Text := IntToStr(pictureA[length(pictureA) - 1].k);
+    finally
+      ini.Free;
+    end;
+  end;
+
+  if CF2 <> 0 then
+    ChildForm2.PaintBox1Paint(Self);
+end;
+
+//----------------- Сохранение данных второго рисунка в файл -------------------
+
+procedure TMainForm.Button25Click(Sender: TObject);
+var ini: TIniFile; strV, strAl, strM, strK: string; c: integer;
+begin
+  strV := Edit15.Text;                                                           //Проверка что в поле для ввода скорости пользователь ввел число
+  for c:=1 to length(strV) do
+  begin
+    if not (strV[c] in ['0'..'9']) then
+    begin
+      Edit15.Text := 'You have typed something that was not a number';
+      EXIT;
+    end;
+  end;
+
+  strAl := Edit16.Text;                                                          //Проверка что в поле для ввода угла пользователь ввел число
+  for c:=1 to length(strAl) do
+  begin
+    if not (strAl[c] in ['0'..'9']) then
+    begin
+      Edit16.Text := 'You have typed something that was not a number';
+      EXIT;
+    end;
+  end;
+
+  strM := Edit17.Text;                                                          //Проверка что в поле для ввода угла пользователь ввел число
+  for c:=1 to length(strM) do
+  begin
+    if not (strM[c] in ['0'..'9']) then
+    begin
+      Edit17.Text := 'You have typed something that was not a number';
+      EXIT;
+    end;
+  end;
+
+  strK := Edit18.Text;                                                          //Проверка что в поле для ввода угла пользователь ввел число
+  for c:=1 to length(strK) do
+  begin
+    if not (strK[c] in ['0'..'9']) then
+    begin
+      Edit18.Text := 'You have typed something that was not a number';
+      EXIT;
+    end;
+  end;
+
+  if SaveDialog1.Execute then                                                   //Перенос значений в файл
+  begin
+    ini := TIniFile.Create(SaveDialog1.FileName);
+    ini.WriteInteger('2', 'v', StrToInt(strV));
+    ini.WriteInteger('2', 'al', StrToInt(strAl));
+    ini.WriteInteger('2', 'm', StrToInt(strM));
+    ini.WriteInteger('2', 'k', StrToInt(strK));
+  end;
 end;
 
 end.

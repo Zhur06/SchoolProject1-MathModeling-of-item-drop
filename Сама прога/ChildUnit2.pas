@@ -63,8 +63,10 @@ begin
 
   For counter := 0 to t do                                                      //нахождение максимальных значений x и y
   begin
-    if A[counter][3] > maxx then maxx := A[counter][3];
-    if A[counter][4] > maxy then maxy := A[counter][4];
+    if A[counter][3] > maxx then
+      maxx := A[counter][3];
+    if A[counter][4] > maxy then
+      maxy := A[counter][4];
   end;
 
 //-------------------------ќтрисовка--------------------------------------------
