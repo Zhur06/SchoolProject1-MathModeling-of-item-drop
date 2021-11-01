@@ -24,7 +24,6 @@ type
     TabSheet2: TTabSheet;
     Edit2: TEdit;
     Edit3: TEdit;
-    Button4: TButton;
     Button5: TButton;
     Button6: TButton;
     Button11: TButton;
@@ -36,9 +35,6 @@ type
     Panel8: TPanel;
     Panel9: TPanel;
     Button15: TButton;
-    GroupBox6: TGroupBox;
-    Button18: TButton;
-    Button19: TButton;
     GroupBox8: TGroupBox;
     Button22: TButton;
     Button23: TButton;
@@ -65,6 +61,14 @@ type
     GroupBox11: TGroupBox;
     Button31: TButton;
     Button32: TButton;
+    GroupBox2: TGroupBox;
+    GroupBox3: TGroupBox;
+    Label1: TLabel;
+    ComboBox1: TComboBox;
+    GroupBox5: TGroupBox;
+    GroupBox7: TGroupBox;
+    Label2: TLabel;
+    Label3: TLabel;
     procedure v1Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
@@ -103,6 +107,7 @@ type
     procedure Edit20Exit(Sender: TObject);
     procedure Edit21Enter(Sender: TObject);
     procedure Edit21Exit(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
   private
     { Private declarations }
   public
@@ -554,11 +559,39 @@ end;
 procedure TMainForm.Button22Click(Sender: TObject);
 begin
   Sizing := true;
+
+  if CF2 > 0 then
+  begin
+    PatBlt(ChildForm2.PaintBox1.Canvas.Handle, 0, 0, ChildForm2.ClientWidth, ChildForm2.ClientHeight, WHITENESS);
+
+    ChildForm2.PaintBox1Paint(Self);
+  end;
+
+  if CF5 > 0 then
+  begin
+    PatBlt(ChildForm5.PaintBox1.Canvas.Handle, 0, 0, ChildForm5.ClientWidth, ChildForm5.ClientHeight, WHITENESS);
+
+    ChildForm5.PaintBox1Paint(Self);
+  end;
 end;
 
 procedure TMainForm.Button23Click(Sender: TObject);
 begin
   Sizing := False;
+
+  if CF2 > 0 then
+  begin
+    PatBlt(ChildForm2.PaintBox1.Canvas.Handle, 0, 0, ChildForm2.ClientWidth, ChildForm2.ClientHeight, WHITENESS);
+
+    ChildForm2.PaintBox1Paint(Self);
+  end;
+
+  if CF5 > 0 then
+  begin
+    PatBlt(ChildForm5.PaintBox1.Canvas.Handle, 0, 0, ChildForm5.ClientWidth, ChildForm5.ClientHeight, WHITENESS);
+
+    ChildForm5.PaintBox1Paint(Self);
+  end;
 end;
 
 procedure TMainForm.Edit19Enter(Sender: TObject);
@@ -823,6 +856,14 @@ begin
     ini.WriteInteger('2', 'al', StrToInt(strAl));
     ini.WriteInteger('2', 'm', StrToInt(strM));
     ini.WriteInteger('2', 'k', StrToInt(strK));
+  end;
+end;
+
+procedure TMainForm.ComboBox1Change(Sender: TObject);
+begin
+  case ComboBox1.Text of
+    'Траектория броска тела в вакууме': PageControl1.ActivePage := TabSheet2;
+    'Траектория броска тела в среде': PageControl1.ActivePage := TabSheet4;
   end;
 end;
 
