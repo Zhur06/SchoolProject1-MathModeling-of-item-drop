@@ -63,29 +63,27 @@ begin
     SetLength(A, length(A) + 1);
     SetLength(A_noAtmosfere, length(A));
     t := t + 1;
+
     if (MainForm.pictureA[j2].k > 0) and (MainForm.pictureA[j2].m > 0) then     //–ассчет координат нового вектора скорости
     begin
       A[t][1] := Round(A[0][1]{Vox}*Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ Vox * e ^ (-(k/m)t) };
       A[t][2] := Round((A[0][2]{Voy}*Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ Voy * e ^ (-(k/m)t) } - ((10 {g} * MainForm.pictureA[j2].m{m})/MainForm.pictureA[j2].k{k}){gm/k}*(1 - Power(exp(1){e}, -((MainForm.pictureA[j2].k{k} / MainForm.pictureA[j2].m{m}){k/m} * t){-(k/m)*t}){ e ^ (-(k/m)t) }) { 1 - e ^ (-(k/m)t) }) { Voy * e ^ (- (k/m)t) - (gm/k)(1 - e ^  };
-
-      A_noAtmosfere[t][1] := A_noAtmosfere[t - 1][1];
-      A_noAtmosfere[t][2] := A_noAtmosfere[0][2] - (10 * t);
     end
     else
     begin
       A[t][1] := A[t - 1][1];                                                   //≈сли сопротивление или масса 0
       A[t][2] := A[0][2] - (10 * t);
-
-      A_noAtmosfere[t][1] := A[t][1];
-      A_noAtmosfere[t][2] := A[t][2];
     end;
+
+    A_noAtmosfere[t][1] := A_noAtmosfere[t - 1][1];
+    A_noAtmosfere[t][2] := A_noAtmosfere[0][2] - (10 * t);
 
 
     A[t][3] := A[t - 1][3] + A[t][1];                                           //–ассчет координат тела
     A[t][4] := A[t - 1][4] + A[t][2];
 
-    A_noAtmosfere[t][3] := A[t - 1][3] + A_noAtmosfere[t][1];
-    A_noAtmosfere[t][4] := A[t - 1][4] + A_noAtmosfere[t][2];
+    A_noAtmosfere[t][3] := A_noAtmosfere[t - 1][3] + A_noAtmosfere[t][1];
+    A_noAtmosfere[t][4] := A_noAtmosfere[t - 1][4] + A_noAtmosfere[t][2];
   Until (A[t][4] <= 0) and (A_noAtmosfere[t][4] <= 0);
 
   For counter := 0 to t do                                                      //нахождение максимальных значений x и y
@@ -109,19 +107,15 @@ begin
     MoveTo(0, Height);                                                          //ѕеремещение начала линии в левый нижний угол
 
   if MainForm.Sizing then
+  begin
     For counter := 0 to t do
     begin
-      {if ((Width - maxx) >= (Height - maxy)) then  }
         if Width >= Height then
           LineTo(Round((Width / maxx) * A[counter][3]), Round(Height - ((Width / maxx) * A[counter][4])))
         else
           LineTo(Round((Height / maxx) * A[counter][3]), Round(Height - ((Height / maxx) *  A[counter][4])));
-      {else  //uncorrect way
-        if Width >= Height then //Uncorrect way
-          LineTo(Round((Width / maxy) * A[counter][3]), Round(Height - ((Width / maxy) * A[counter][4])))
-        else
-          LineTo(Round((Height / maxy) * A[counter][3]), Round((Height - ((Height / maxy) * A[counter][4])))); }
-    end
+    end;
+  end
   else
     For counter := 0 to t do
     begin

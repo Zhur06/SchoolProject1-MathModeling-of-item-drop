@@ -17,7 +17,7 @@ type
     { Private declarations }
   public
     t: integer;
-    A, A_noAtmosfere: Arr;
+    A, A_noAtmosfere: Array of Arr;
     { Public declarations }
   end;
 
@@ -39,63 +39,74 @@ end;
 //------------------------------------------------------------------------------
 
 procedure TChildForm5.PaintBox1Paint(Sender: TObject);
-var counter, j2: integer; maxx, maxy: real;
+var counter, j2: integer; maxx, maxy, Gmaxx, Gmaxy: real;
 begin
+SetLength(A, length(MainForm.pictureA));
+SetLength(A_noAtmosfere, length(MainForm.pictureA));
+
 For j2 := 0 to length(MainForm.pictureA) - 1 do
 begin
-  SetLength(A, 1);
-  SetLength(A_noAtmosfere, 1);
-  A[0][1] := MainForm.pictureA[j2].V * cos(MainForm.pictureA[j2].al * pi/180);  //Переводим данную нам скорость на ее проекции на оси плоскости
-  A[0][2] := MainForm.pictureA[j2].V * sin(MainForm.pictureA[j2].al * pi/180);
+  SetLength(A[j2], 1);
+  SetLength(A_noAtmosfere[j2], 1);
+  A[j2][0][1] := MainForm.pictureA[j2].V * cos(MainForm.pictureA[j2].al * pi/180);  //Переводим данную нам скорость на ее проекции на оси плоскости
+  A[j2][0][2] := MainForm.pictureA[j2].V * sin(MainForm.pictureA[j2].al * pi/180);
 
-  A_noAtmosfere[0][1] := A[0][1];
-  A_noAtmosfere[0][2] := A[0][2];
+  A_noAtmosfere[j2][0][1] := A[j2][0][1];
+  A_noAtmosfere[j2][0][2] := A[j2][0][2];
 
-  A[0][3] := 0;
-  A[0][4] := 0;
+  A[j2][0][3] := 0;
+  A[j2][0][4] := 0;
 
-  A_noAtmosfere[0][3] := 0;
-  A_noAtmosfere[0][4] := 0;
+  A_noAtmosfere[j2][0][3] := 0;
+  A_noAtmosfere[j2][0][4] := 0;
 
   t := 0;
 
   Repeat
-    SetLength(A, length(A) + 1);
-    SetLength(A_noAtmosfere, length(A));
+    SetLength(A[j2], length(A[j2]) + 1);
+    SetLength(A_noAtmosfere[j2], length(A[j2]));
     t := t + 1;
 
     if (MainForm.pictureA[j2].k > 0) and (MainForm.pictureA[j2].m > 0) then     //Рассчет координат нового вектора скорости
     begin
-      A[t][1] := Round(A[0][1]{Vox}*Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ Vox * e ^ (-(k/m)t) };
-      A[t][2] := Round((A[0][2]{Voy}*Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ Voy * e ^ (-(k/m)t) } - ((10 {g} * MainForm.pictureA[j2].m{m})/MainForm.pictureA[j2].k{k}){gm/k}*(1 - Power(exp(1){e}, -((MainForm.pictureA[j2].k{k} / MainForm.pictureA[j2].m{m}){k/m} * t){-(k/m)*t}){ e ^ (-(k/m)t) }) { 1 - e ^ (-(k/m)t) }) { Voy * e ^ (- (k/m)t) - (gm/k)(1 - e ^  };
+      A[j2][t][1] := Round(A[j2][0][1]{Vox}*Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ Vox * e ^ (-(k/m)t) };
+      A[j2][t][2] := Round((A[j2][0][2]{Voy}*Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ Voy * e ^ (-(k/m)t) } - ((10 {g} * MainForm.pictureA[j2].m{m})/MainForm.pictureA[j2].k{k}){gm/k}*(1 - Power(exp(1){e}, -((MainForm.pictureA[j2].k{k} / MainForm.pictureA[j2].m{m}){k/m} * t){-(k/m)*t}){ e ^ (-(k/m)t) }) { 1 - e ^ (-(k/m)t) }) { Voy * e ^ (- (k/m)t) - (gm/k)(1 - e ^  };
     end
     else
     begin
-      A[t][1] := A[t - 1][1];                                                   //Если сопротивление или масса 0
-      A[t][2] := A[0][2] - (10 * t);
+      A[j2][t][1] := A[j2][t - 1][1];                                                   //Если сопротивление или масса 0
+      A[j2][t][2] := A[j2][0][2] - (10 * t);
     end;
 
-    A_noAtmosfere[t][1] := A_noAtmosfere[t - 1][1];
-    A_noAtmosfere[t][2] := A_noAtmosfere[0][2] - (10 * t);
+    A_noAtmosfere[j2][t][1] := A_noAtmosfere[j2][t - 1][1];
+    A_noAtmosfere[j2][t][2] := A_noAtmosfere[j2][0][2] - (10 * t);
 
 
-    A[t][3] := A[t - 1][3] + A[t][1];                                           //Рассчет координат тела
-    A[t][4] := A[t - 1][4] + A[t][2];
+    A[j2][t][3] := A[j2][t - 1][3] + A[j2][t][1];                                           //Рассчет координат тела
+    A[j2][t][4] := A[j2][t - 1][4] + A[j2][t][2];
 
-    A_noAtmosfere[t][3] := A_noAtmosfere[t - 1][3] + A_noAtmosfere[t][1];
-    A_noAtmosfere[t][4] := A_noAtmosfere[t - 1][4] + A_noAtmosfere[t][2];
-  Until (A[t][4] <= 0) and (A_noAtmosfere[t][4] <= 0);
+    A_noAtmosfere[j2][t][3] := A_noAtmosfere[j2][t - 1][3] + A_noAtmosfere[j2][t][1];
+    A_noAtmosfere[j2][t][4] := A_noAtmosfere[j2][t - 1][4] + A_noAtmosfere[j2][t][2];
+  Until (A[j2][t][4] <= 0) and (A_noAtmosfere[j2][t][4] <= 0);
 
   For counter := 0 to t do                                                      //нахождение максимальных значений x и y
   begin
-    if A_noAtmosfere[counter][3] > maxx then
-      maxx := A_noAtmosfere[counter][3];
-    if A_noAtmosfere[counter][4] > maxy then
-      maxy := A_noAtmosfere[counter][4];
+    if A_noAtmosfere[j2][counter][3] > maxx then
+      maxx := A_noAtmosfere[j2][counter][3];
+    if A_noAtmosfere[j2][counter][4] > maxy then
+      maxy := A_noAtmosfere[j2][counter][4];
   end;
+
+  if maxx > Gmaxx then
+    Gmaxx := maxx;
+  if maxy > Gmaxy then
+    Gmaxy := maxy;
+end;
 
 //-------------------------Отрисовка--------------------------------------------
 
+For j2 := 0 to length(MainForm.pictureA) - 1 do
+begin
   if t > 1 then
   With PaintBox1, Canvas do
   begin
@@ -111,15 +122,15 @@ begin
     For counter := 0 to t do
     begin
         if Width >= Height then
-          LineTo(Round((Width / maxx) * A[counter][3]), Round(Height - ((Width / maxx) * A[counter][4])))
+          LineTo(Round((Width / Gmaxx) * A[j2][counter][3]), Round(Height - ((Width / Gmaxx) * A[j2][counter][4])))
         else
-          LineTo(Round((Height / maxx) * A[counter][3]), Round(Height - ((Height / maxx) *  A[counter][4])));
+          LineTo(Round((Height / Gmaxx) * A[j2][counter][3]), Round(Height - ((Height / Gmaxx) *  A[j2][counter][4])));
     end;
   end
   else
     For counter := 0 to t do
     begin
-      LineTo(Round(A[counter][3]), Round(Height - A[counter][4]));
+      LineTo(Round(A[j2][counter][3]), Round(Height - A[j2][counter][4]));
     end;
   end;
 end;

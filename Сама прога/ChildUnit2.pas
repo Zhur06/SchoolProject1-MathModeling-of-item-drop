@@ -17,7 +17,7 @@ type
     { Private declarations }
   public
     t: integer;
-    A: Arr;
+    A: Array of Arr;
     { Public declarations }
   end;
 
@@ -37,40 +37,50 @@ begin
 end;
 
 procedure TChildForm2.PaintBox1Paint(Sender: TObject);
-var counter, j2: integer; maxx, maxy: real;
+var counter, j2: integer; maxx, maxy, Gmaxx, Gmaxy: real;
 begin
+SetLength(A, length(MainForm.pictureA));
+
 For j2 := 0 to length(MainForm.pictureA) - 1 do
 begin
-  SetLength(A, 1);
-  A[0][1] := MainForm.pictureA[j2].V * cos(MainForm.pictureA[j2].al * pi/180);                            //Переводим данную нам скорость на ее проекции на оси плоскости
-  A[0][2] := MainForm.pictureA[j2].V * sin(MainForm.pictureA[j2].al * pi/180);
+  SetLength(A[j2], 1);
+  A[j2][0][1] := MainForm.pictureA[j2].V * cos(MainForm.pictureA[j2].al * pi/180);                            //Переводим данную нам скорость на ее проекции на оси плоскости
+  A[j2][0][2] := MainForm.pictureA[j2].V * sin(MainForm.pictureA[j2].al * pi/180);
 
-  A[0][3] := 0;
-  A[0][4] := 0;
+  A[j2][0][3] := 0;
+  A[j2][0][4] := 0;
 
   t := 0;
 
   Repeat
-    SetLength(A, length(A) + 1);
+    SetLength(A[j2], length(A[j2]) + 1);
     t := t + 1;
 
-    A[t][1] := A[t - 1][1];                                                   //Рассчет координат нового вектора скорости
-    A[t][2] := A[0][2] - (10 * t);
+    A[j2][t][1] := A[j2][t - 1][1];                                                   //Рассчет координат нового вектора скорости
+    A[j2][t][2] := A[j2][0][2] - (10 * t);
 
-    A[t][3] := A[t - 1][3] + A[t][1];                                           //Рассчет координат тела
-    A[t][4] := A[t - 1][4] + A[t][2];
-  Until A[t][4] <= 0;
+    A[j2][t][3] := A[j2][t - 1][3] + A[j2][t][1];                                           //Рассчет координат тела
+    A[j2][t][4] := A[j2][t - 1][4] + A[j2][t][2];
+  Until A[j2][t][4] <= 0;
 
   For counter := 0 to t do                                                      //нахождение максимальных значений x и y
   begin
-    if A[counter][3] > maxx then
-      maxx := A[counter][3];
-    if A[counter][4] > maxy then
-      maxy := A[counter][4];
+    if A[j2][counter][3] > maxx then
+      maxx := A[j2][counter][3];
+    if A[j2][counter][4] > maxy then
+      maxy := A[j2][counter][4];
   end;
+
+  if maxx > Gmaxx then
+    Gmaxx := maxx;
+  if maxy > Gmaxy then
+    Gmaxy := maxy;
+end;
 
 //-------------------------Отрисовка--------------------------------------------
 
+For j2 := 0 to length(MainForm.pictureA) - 1 do
+begin
   if t <> 0 then
   With PaintBox1, Canvas do
   begin
@@ -84,23 +94,17 @@ begin
   if MainForm.Sizing then
     For counter := 0 to t do
     begin
-      {if ((Width - maxx) >= (Height - maxy)) then  }
-        if Width >= Height then
-          LineTo(Round((Width / maxx) * A[counter][3]), Round(Height - ((Width / maxx) * A[counter][4])))
-        else
-          LineTo(Round((Height / maxx) * A[counter][3]), Round(Height - ((Height / maxx) *  A[counter][4])));
-      {else  //uncorrect way
-        if Width >= Height then //Uncorrect way
-          LineTo(Round((Width / maxy) * A[counter][3]), Round(Height - ((Width / maxy) * A[counter][4])))
-        else
-          LineTo(Round((Height / maxy) * A[counter][3]), Round((Height - ((Height / maxy) * A[counter][4])))); }
+      if Width >= Height then
+        LineTo(Round((Width / Gmaxx) * A[j2][counter][3]), Round(Height - ((Width / Gmaxx) * A[j2][counter][4])))
+      else
+        LineTo(Round((Height / Gmaxx) * A[j2][counter][3]), Round(Height - ((Height / Gmaxx) *  A[j2][counter][4])));
     end
   else
     For counter := 0 to t do
     begin
-      LineTo(Round(A[counter][3]), Round(Height - A[counter][4]));
+      LineTo(Round(A[j2][counter][3]), Round(Height - A[j2][counter][4]));
     end;
   end;
-end;
+end;  
 end;
 end.
