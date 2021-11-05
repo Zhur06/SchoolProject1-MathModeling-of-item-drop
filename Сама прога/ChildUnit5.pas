@@ -17,7 +17,7 @@ type
     { Private declarations }
   public
     t: integer;
-    A, A_noAtmosfere: Array of Arr;
+    A: Array of Arr;
     { Public declarations }
   end;
 
@@ -41,30 +41,24 @@ end;
 procedure TChildForm5.PaintBox1Paint(Sender: TObject);
 var counter, j2: integer; maxx, maxy, Gmaxx, Gmaxy: real;
 begin
+PatBlt(ChildForm5.PaintBox1.Canvas.Handle, 0, 0, ChildForm5.ClientWidth, ChildForm5.ClientHeight, WHITENESS);
+
 SetLength(A, length(MainForm.pictureA));
-SetLength(A_noAtmosfere, length(MainForm.pictureA));
 
 For j2 := 0 to length(MainForm.pictureA) - 1 do
 begin
   SetLength(A[j2], 1);
-  SetLength(A_noAtmosfere[j2], 1);
   A[j2][0][1] := MainForm.pictureA[j2].V * cos(MainForm.pictureA[j2].al * pi/180);  //ѕереводим данную нам скорость на ее проекции на оси плоскости
   A[j2][0][2] := MainForm.pictureA[j2].V * sin(MainForm.pictureA[j2].al * pi/180);
 
-  A_noAtmosfere[j2][0][1] := A[j2][0][1];
-  A_noAtmosfere[j2][0][2] := A[j2][0][2];
 
   A[j2][0][3] := 0;
   A[j2][0][4] := 0;
-
-  A_noAtmosfere[j2][0][3] := 0;
-  A_noAtmosfere[j2][0][4] := 0;
 
   t := 0;
 
   Repeat
     SetLength(A[j2], length(A[j2]) + 1);
-    SetLength(A_noAtmosfere[j2], length(A[j2]));
     t := t + 1;
 
     if (MainForm.pictureA[j2].k > 0) and (MainForm.pictureA[j2].m > 0) then     //–ассчет координат нового вектора скорости
@@ -78,23 +72,17 @@ begin
       A[j2][t][2] := A[j2][0][2] - (10 * t);
     end;
 
-    A_noAtmosfere[j2][t][1] := A_noAtmosfere[j2][t - 1][1];
-    A_noAtmosfere[j2][t][2] := A_noAtmosfere[j2][0][2] - (10 * t);
-
-
     A[j2][t][3] := A[j2][t - 1][3] + A[j2][t][1];                                           //–ассчет координат тела
     A[j2][t][4] := A[j2][t - 1][4] + A[j2][t][2];
 
-    A_noAtmosfere[j2][t][3] := A_noAtmosfere[j2][t - 1][3] + A_noAtmosfere[j2][t][1];
-    A_noAtmosfere[j2][t][4] := A_noAtmosfere[j2][t - 1][4] + A_noAtmosfere[j2][t][2];
-  Until (A[j2][t][4] <= 0) and (A_noAtmosfere[j2][t][4] <= 0);
+  Until A[j2][t][4] <= 0;
 
   For counter := 0 to t do                                                      //нахождение максимальных значений x и y
   begin
-    if A_noAtmosfere[j2][counter][3] > maxx then
-      maxx := A_noAtmosfere[j2][counter][3];
-    if A_noAtmosfere[j2][counter][4] > maxy then
-      maxy := A_noAtmosfere[j2][counter][4];
+    if A[j2][counter][3] > maxx then
+      maxx := A[j2][counter][3];
+    if A[j2][counter][4] > maxy then
+      maxy := A[j2][counter][4];
   end;
 
   if maxx > Gmaxx then
@@ -117,7 +105,7 @@ begin
 
     MoveTo(0, Height);                                                          //ѕеремещение начала линии в левый нижний угол
 
-  if MainForm.Sizing then
+  if MainForm.ScaleCB.Checked then
   begin
     For counter := 0 to t do
     begin

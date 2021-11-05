@@ -39,6 +39,8 @@ end;
 procedure TChildForm2.PaintBox1Paint(Sender: TObject);
 var counter, j2: integer; maxx, maxy, Gmaxx, Gmaxy: real;
 begin
+PatBlt(ChildForm2.PaintBox1.Canvas.Handle, 0, 0, ChildForm2.ClientWidth, ChildForm2.ClientHeight, WHITENESS);
+
 SetLength(A, length(MainForm.pictureA));
 
 For j2 := 0 to length(MainForm.pictureA) - 1 do
@@ -91,7 +93,7 @@ begin
 
     MoveTo(0, Height);                                                          //Перемещение начала линии в левый нижний угол
 
-  if MainForm.Sizing then
+  if MainForm.ScaleCB.Checked then
     For counter := 0 to t do
     begin
       if Width >= Height then
