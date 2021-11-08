@@ -45,18 +45,30 @@ type
     GroupBox10: TGroupBox;
     Label8: TLabel;
     RunBtn: TButton;
-    Button1: TButton;
+    ColorChooseBtn: TButton;
     Panel1: TPanel;
     ScaleCB: TCheckBox;
     GroupBox4: TGroupBox;
     SaveToFileBtn: TButton;
     ReadFromFileBtn: TButton;
+    GroupBox7: TGroupBox;
+    Image1: TImage;
+    Image2: TImage;
+    Image3: TImage;
+    ClearBtn: TButton;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
     procedure SaveToFileBtnClick(Sender: TObject);
     procedure ReadFromFileBtnClick(Sender: TObject);
     procedure RunBtnClick(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure ColorChooseBtnClick(Sender: TObject);
     procedure ScaleCBClick(Sender: TObject);
+    procedure ClearBtnClick(Sender: TObject);
   private
     { Private declarations }
     procedure RePaint();
@@ -98,12 +110,19 @@ end;
 //----------------- Черчение рисунка -------------------------------------------
 
 procedure TMainForm.Draw2();
+var V, al: integer;
 begin
+  V := StrToIntDef(Edit2.Text, 0);
+  al := StrToIntDef(Edit3.Text, 0);
+
+  if {(V < 20) or }(V > 10000000) then begin ShowMessage('Некорректное значение в поле скорости !' + #13 + 'Допустимые значения: от 20 до 10 000 000 м/с'); EXIT; end;
+  if (al <= 0) or (al > 90) then begin ShowMessage('Некорректное значение в поле угла броска !' + #13 + 'Допустимые значения: от 0 до 90 градусов'); EXIT; end;
+
   SetLength(pictureA, length(pictureA) + 1);
   pictureA[length(pictureA) - 1] := Pic.Create;
 
-  pictureA[length(pictureA) - 1].V := StrToIntDef(Edit2.Text, 0);
-  pictureA[length(pictureA) - 1].al := StrToIntDef(Edit3.Text, 0);
+  pictureA[length(pictureA) - 1].V := V;
+  pictureA[length(pictureA) - 1].al := al;
 
   pictureA[length(pictureA) - 1].Color := ChoozedColor;
 
@@ -138,33 +157,19 @@ end;
 //----------------- Сохранение данных второго рисунка в файл -------------------
 
 procedure TMainForm.SaveToFile2();
-var ini: TIniFile; strV, strAl: string; c: integer;
+var ini: TIniFile; v, al: integer;
 begin
-  strV := Edit2.Text;                                                           //Проверка что в поле для ввода скорости пользователь ввел число
-  for c:=1 to length(strV) do
-  begin
-    if not (strV[c] in ['0'..'9']) then
-    begin
-      Edit2.Text := 'You have typed something that was not a number';
-      EXIT;
-    end;
-  end;
+  v := StrToIntDef(Edit2.Text, 0);
+  if (V < 20) or (V > 10000000) then begin ShowMessage('Некорректное значение в поле скорости !' + #13 + 'Допустимые значения: от 20 до 10 000 000 м/с'); EXIT; end;
 
-  strAl := Edit3.Text;                                                          //Проверка что в поле для ввода угла пользователь ввел число
-  for c:=1 to length(strAl) do
-  begin
-    if not (strAl[c] in ['0'..'9']) then
-    begin
-      Edit3.Text := 'You have typed something that was not a number';
-      EXIT;
-    end;
-  end;
+  al := StrToIntDef(Edit3.Text, 0);
+  if (al <= 0) or (al > 90) then begin ShowMessage('Некорректное значение в поле угла броска !' + #13 + 'Допустимые значения: от 0 до 90 градусов'); EXIT; end;
 
   if SaveDialog1.Execute then                                                   //Перенос значений в файл
   begin
     ini := TIniFile.Create(SaveDialog1.FileName);
-    ini.WriteInteger('2', 'v', StrToInt(strV));
-    ini.WriteInteger('2', 'al', StrToInt(strAl));
+    ini.WriteInteger('2', 'v', v);
+    ini.WriteInteger('2', 'al', al);
   end;
 end;
 
@@ -174,14 +179,25 @@ end;
 //----------------- Черчение Рисунка -------------------------------------------
 
 procedure TMainForm.Draw5();
+var V, al, m, k: integer;
 begin
+  V := StrToIntDef(Edit15.Text, 0);
+  al := StrToIntDef(Edit16.Text, 0);
+  m := StrToIntDef(Edit17.Text, 0);
+  k := StrToIntDef(Edit18.Text, 0);
+
+  if (V < 20) or (V > 10000000) then begin ShowMessage('Некорректное значение в поле скорости !' + #13 + 'Допустимые значения: от 20 до 10 000 000 м/с'); EXIT; end;
+  if (al <= 0) or (al > 90) then begin ShowMessage('Некорректное значение в поле угла броска !' + #13 + 'Допустимые значения: от 0 до 90 градусов'); EXIT; end;
+  if m <= 0 then begin ShowMessage('Некорректное значение в поле массы !' + #13 + 'Допустимые значения: от 0 кг'); EXIT; end;
+  if k <= 0 then begin ShowMessage('Некорректное значение в поле коэфциента сопротивления !' + #13 + 'Допустимые значения: от 0'); EXIT; end;
+
   SetLength(pictureA, length(pictureA) + 1);
   pictureA[length(pictureA) - 1] := Pic.Create;
 
-  pictureA[length(pictureA) - 1].V := StrToIntDef(Edit15.Text, 0);
-  pictureA[length(pictureA) - 1].al := StrToIntDef(Edit16.Text, 0);
-  pictureA[length(pictureA) - 1].m := StrToIntDef(Edit17.Text, 0);
-  pictureA[length(pictureA) - 1].k := StrToIntDef(Edit18.Text, 0);
+  pictureA[length(pictureA) - 1].V := V;
+  pictureA[length(pictureA) - 1].al := al;
+  pictureA[length(pictureA) - 1].m := m;
+  pictureA[length(pictureA) - 1].k := k;
 
   pictureA[length(pictureA) - 1].Color := ChoozedColor;
 
@@ -219,21 +235,16 @@ procedure TMainForm.SaveToFile5();
 var ini: TIniFile; v, al, m, k: integer;
 begin
   v := StrToIntDef(Edit15.Text, 0);
-  if v = 0 then
-  begin
-    ShowMessage('Некорректное значение в поле скорости !');
-    EXIT;
-  end;
+  if (V < 20) or (V > 10000000) then begin ShowMessage('Некорректное значение в поле скорости !' + #13 + 'Допустимые значения: от 20 до 10 000 000 м/с'); EXIT; end;
 
   al := StrToIntDef(Edit16.Text, 0);
-  if al = 0 then
-  begin
-    ShowMessage('Некорректное значение в поле угла !');
-    EXIT;
-  end;
+  if (al <= 0) or (al > 90) then begin ShowMessage('Некорректное значение в поле угла броска !' + #13 + 'Допустимые значения: от 0 до 90 градусов'); EXIT; end;
 
   m := StrToIntDef(Edit17.Text, 0);
   k := StrToIntDef(Edit18.Text, 0);
+
+  if m <= 0 then begin ShowMessage('Некорректное значение в поле массы !' + #13 + 'Допустимые значения: от 0 кг'); EXIT; end;
+  if k <= 0 then begin ShowMessage('Некорректное значение в поле коэфциента сопротивления !' + #13 + 'Допустимые значения: от 0'); EXIT; end;
 
   if SaveDialog1.Execute then                                                   //Перенос значений в файл
   begin
@@ -258,7 +269,7 @@ end;
 
 //----------------- Выбор Цвета ------------------------------------------------
 
-procedure TMainForm.Button1Click(Sender: TObject);
+procedure TMainForm.ColorChooseBtnClick(Sender: TObject);
 begin
   if ColorDialog1.Execute then
     ChoozedColor := ColorDialog1.Color;
@@ -276,10 +287,12 @@ end;
 
 procedure TMainForm.RunBtnClick(Sender: TObject);
 begin
-  case ComboBox1.ItemIndex of
-    0: Draw2;
-    1: Draw5;
-  end;
+if length(pictureA) >= 9 then
+  ShowMessage('Вы начертили 10 или более графиков' + #13 + 'Если у вас не много памяти, то программа может начать чертить некорректно из-за ее недостатка' + #13 + 'Рекомендуется очистить память при помощи кнопки "Стереть все графики"');
+case ComboBox1.ItemIndex of
+  0: Draw2;
+  1: Draw5;
+end;
 end;
 
 //----------------- Сохранение/Чтение в/из файл(а) -----------------------------
@@ -298,6 +311,12 @@ begin
     0: ReadFromFile2;
     1: ReadFromFile5;
   end;
+end;
+
+procedure TMainForm.ClearBtnClick(Sender: TObject);
+begin
+  pictureA := nil;
+  RePaint;
 end;
 
 end.

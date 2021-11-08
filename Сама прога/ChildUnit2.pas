@@ -7,17 +7,18 @@ uses
   Dialogs, ExtCtrls;
 
 type
-  Arr = array of array [1..4] of real;                                          //1 - скорость по x 2 - скорость по y 3 - координата x 4 - координата y
+  Arr = array of array [1..4] of real;                                          //1 - скорость по x 2 - скорость по y 3 - координата x 4 - координата y  5 - время
 
   TChildForm2 = class(TForm)
     PaintBox1: TPaintBox;
     procedure PaintBox1Paint(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    function MathOfNoAtmosfereFlight(var maxx, maxy, Gmaxx, Gmaxy, t: real; j2, width: integer; var maxCounter: integer): Arr;
   private
     { Private declarations }
   public
-    t: integer;
-    A: Array of Arr;
+    t: real;
+    //A: array of Arr;
     { Public declarations }
   end;
 
@@ -26,7 +27,7 @@ var
 
 implementation
 
-uses MainUnit;
+uses MainUnit, Math;
 
 {$R *.dfm}
 
@@ -36,42 +37,47 @@ begin
     MainForm.CF2 :=  MainForm.CF2 - 1;
 end;
 
-procedure TChildForm2.PaintBox1Paint(Sender: TObject);
-var counter, j2: integer; maxx, maxy, Gmaxx, Gmaxy: real;
+//################# РАССЧЕТЫ ###################################################
+
+function TChildForm2.MathOfNoAtmosfereFlight(var maxx, maxy, Gmaxx, Gmaxy, t: real; j2, width: integer; var maxCounter: integer): Arr;
+var counter: integer; t0: real;
 begin
-PatBlt(ChildForm2.PaintBox1.Canvas.Handle, 0, 0, ChildForm2.ClientWidth, ChildForm2.ClientHeight, WHITENESS);
+  SetLength(Result, 1);
+  Result[0][1] := MainForm.pictureA[j2].V * cos(MainForm.pictureA[j2].al * pi/180);                            //Переводим данную нам скорость на ее проекции на оси плоскости
+  Result[0][2] := MainForm.pictureA[j2].V * sin(MainForm.pictureA[j2].al * pi/180);
 
-SetLength(A, length(MainForm.pictureA));
+  t0 := (Result[0][2]*2)/10;
 
-For j2 := 0 to length(MainForm.pictureA) - 1 do
-begin
-  SetLength(A[j2], 1);
-  A[j2][0][1] := MainForm.pictureA[j2].V * cos(MainForm.pictureA[j2].al * pi/180);                            //Переводим данную нам скорость на ее проекции на оси плоскости
-  A[j2][0][2] := MainForm.pictureA[j2].V * sin(MainForm.pictureA[j2].al * pi/180);
-
-  A[j2][0][3] := 0;
-  A[j2][0][4] := 0;
+  Result[0][3] := 0;
+  Result[0][4] := 0;
 
   t := 0;
+  counter := 0;
 
   Repeat
-    SetLength(A[j2], length(A[j2]) + 1);
-    t := t + 1;
+    SetLength(Result, length(Result) + 1);
+    counter := counter + 1;
+    if MainForm.ScaleCB.Checked then t := t + (t0 / width)
+    else t := counter;
+    //Result[counter][5] := t;
 
-    A[j2][t][1] := A[j2][t - 1][1];                                                   //Рассчет координат нового вектора скорости
-    A[j2][t][2] := A[j2][0][2] - (10 * t);
+    Result[counter][1] := Result[counter - 1][1];                                                   //Рассчет координат нового вектора скорости
+    Result[counter][2] := Result[0][2] - (10 * t);
 
-    A[j2][t][3] := A[j2][t - 1][3] + A[j2][t][1];                                           //Рассчет координат тела
-    A[j2][t][4] := A[j2][t - 1][4] + A[j2][t][2];
-  Until A[j2][t][4] <= 0;
+    Result[counter][3] := Result[0][1] * t;                                     //Рассчет координат тела
+    Result[counter][4] := Result[0][2] * t - 5 * Power(t, 2) ;
+  Until Result[counter][4] <= 0;
 
-  For counter := 0 to t do                                                      //нахождение максимальных значений x и y
+  maxCounter := counter;
+
+  For counter := 0 to maxCounter do                                                      //нахождение максимальных значений x и y
   begin
-    if A[j2][counter][3] > maxx then
-      maxx := A[j2][counter][3];
-    if A[j2][counter][4] > maxy then
-      maxy := A[j2][counter][4];
+    if Result[counter][3] > maxx then
+      maxx := Result[counter][3];
+    if Result[counter][4] > maxy then
+      maxy := Result[counter][4];
   end;
+
 
   if maxx > Gmaxx then
     Gmaxx := maxx;
@@ -81,6 +87,16 @@ end;
 
 //-------------------------Отрисовка--------------------------------------------
 
+procedure TChildForm2.PaintBox1Paint(Sender: TObject);
+var counter, j2, maxCounter: integer; maxx, maxy, Gmaxx, Gmaxy: real; A: Array of Arr;
+begin
+
+SetLength(A, length(MainForm.pictureA));
+
+For j2 := 0 to length(MainForm.pictureA) - 1 do
+  A[j2] := MathOfNoAtmosfereFlight(maxx, maxy, Gmaxx, Gmaxy, t, j2, PaintBox1.Width, maxCounter);
+
+PatBlt(ChildForm2.PaintBox1.Canvas.Handle, 0, 0, ChildForm2.ClientWidth, ChildForm2.ClientHeight, WHITENESS);
 For j2 := 0 to length(MainForm.pictureA) - 1 do
 begin
   if t <> 0 then
@@ -94,7 +110,7 @@ begin
     MoveTo(0, Height);                                                          //Перемещение начала линии в левый нижний угол
 
   if MainForm.ScaleCB.Checked then
-    For counter := 0 to t do
+    For counter := 0 to maxCounter do
     begin
       if Width >= Height then
         LineTo(Round((Width / Gmaxx) * A[j2][counter][3]), Round(Height - ((Width / Gmaxx) * A[j2][counter][4])))
@@ -102,7 +118,7 @@ begin
         LineTo(Round((Height / Gmaxx) * A[j2][counter][3]), Round(Height - ((Height / Gmaxx) *  A[j2][counter][4])));
     end
   else
-    For counter := 0 to t do
+    For counter := 0 to maxCounter do
     begin
       LineTo(Round(A[j2][counter][3]), Round(Height - A[j2][counter][4]));
     end;

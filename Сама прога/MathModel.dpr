@@ -1,17 +1,16 @@
-program Project1;
+program MathModel;
 
 uses
   Forms,
   MainUnit in 'MainUnit.pas' {MainForm},
-  ChildUnit in 'ChildUnit.pas' {ChildForm},
   ChildUnit2 in 'ChildUnit2.pas' {ChildForm2},
-  ChildUnit3 in 'ChildUnit3.pas' {ChildForm3},
   ChildUnit5 in 'ChildUnit5.pas' {ChildForm5};
 
 {$R *.res}
 
 begin
   Application.Initialize;
+  Application.Title := 'ћатематическое моделирование броска тела';
   Application.CreateForm(TMainForm, MainForm);
   Application.Run;
 end.
