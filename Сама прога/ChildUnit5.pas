@@ -12,7 +12,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure PaintBox1Paint(Sender: TObject);
   private
-    function MathOfAtmosfereFlight(var maxx, maxy, Gmaxx, Gmaxy, t: real; j2, width: integer; var maxCounter: integer): Arr;
+    function MathOfAtmosfereFlight(var maxx, maxy, Gmaxx, Gmaxy, t: real; j2, width: integer; var maxCounter: integer): ChildUnit2.PpointsOfGraphic;
     { Private declarations }
   public
     t: real;
@@ -36,9 +36,9 @@ end;
 
 //################# ПРОСЧЕТЫ ###################################################
 
-function TChildForm5.MathOfAtmosfereFlight(var maxx, maxy, Gmaxx, Gmaxy, t: real; j2, width: integer; var maxCounter: integer): ChildUnit2.Arr;
+function TChildForm5.MathOfAtmosfereFlight(var maxx, maxy, Gmaxx, Gmaxy, t: real; j2, width: integer; var maxCounter: integer): ChildUnit2.PpointsOfGraphic;
 var counter: integer; t0: real;
-begin
+begin {
 if (MainForm.pictureA[j2].k > 0) and (MainForm.pictureA[j2].m > 0) then
 begin
   SetLength(Result, 1);
@@ -57,16 +57,16 @@ begin
     SetLength(Result, length(Result) + 1);
     counter := counter + 1;
     if MainForm.ScaleCB.Checked then t := t + (t0 / width)
-    else t := counter;
+    else t := counter; }
 
     //Рассчет координат нового вектора скорости
 
-    Result[counter][1] := Round(Result[0][1]{Vox}*Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ Vox * e ^ (-(k/m)t) };
-    Result[counter][2] := Round((Result[0][2]{Voy}*Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ Voy * e ^ (-(k/m)t) } - ((10 {g} * MainForm.pictureA[j2].m{m})/MainForm.pictureA[j2].k{k}){gm/k}*(1 - Power(exp(1){e}, -((MainForm.pictureA[j2].k{k} / MainForm.pictureA[j2].m{m}){k/m} * t){-(k/m)*t}){ e ^ (-(k/m)t) }) { 1 - e ^ (-(k/m)t) }) { Voy * e ^ (- (k/m)t) - (gm/k)(1 - e ^  };
+    //Result[counter][1] := Round(Result[0][1]{Vox}*Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ Vox * e ^ (-(k/m)t) };
+    //Result[counter][2] := Round((Result[0][2]{Voy}*Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ Voy * e ^ (-(k/m)t) } - ((10 {g} * MainForm.pictureA[j2].m{m})/MainForm.pictureA[j2].k{k}){gm/k}*(1 - Power(exp(1){e}, -((MainForm.pictureA[j2].k{k} / MainForm.pictureA[j2].m{m}){k/m} * t){-(k/m)*t}){ e ^ (-(k/m)t) }) { 1 - e ^ (-(k/m)t) }) { Voy * e ^ (- (k/m)t) - (gm/k)(1 - e ^  };
 
-    Result[counter][3] := Result[0][1]{Vox} * (MainForm.pictureA[j2].m / MainForm.pictureA[j2].k){m/k} * (1 - Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){1 - e ^ (-(k/m)t)};                                           //Рассчет координат тела
-    Result[counter][4] := (MainForm.pictureA[j2].m / MainForm.pictureA[j2].k){m/k} * (((Result[0][2]{Voy} + (MainForm.pictureA[j2].m * 10){mg}/ MainForm.pictureA[j2].k){Voy + mg/k} * (1 - Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ 1 - e ^ (-(k/m)t) }) - 10 * t);
-
+    //Result[counter][3] := Result[0][1]{Vox} * (MainForm.pictureA[j2].m / MainForm.pictureA[j2].k){m/k} * (1 - Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){1 - e ^ (-(k/m)t)};                                           //Рассчет координат тела
+    //Result[counter][4] := (MainForm.pictureA[j2].m / MainForm.pictureA[j2].k){m/k} * (((Result[0][2]{Voy} + (MainForm.pictureA[j2].m * 10){mg}/ MainForm.pictureA[j2].k){Voy + mg/k} * (1 - Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ 1 - e ^ (-(k/m)t) }) - 10 * t);
+      {
   Until Result[counter][4] <= 0;
 
   maxCounter := counter;
@@ -84,14 +84,14 @@ begin
   if maxy > Gmaxy then
     Gmaxy := maxy;
 end
-else Result := ChildForm2.MathOfNoAtmosfereFlight(maxx, maxy, Gmaxx, Gmaxy, t, j2, width, maxCounter);
+else Result := ChildForm2.MathOfNoAtmosfereFlight(maxx, maxy, Gmaxx, Gmaxy, t, j2, width, maxCounter); }
 end;
 
 //-------------------------Отрисовка--------------------------------------------
 
 procedure TChildForm5.PaintBox1Paint(Sender: TObject);
-var counter, j2, maxCounter: integer; maxx, maxy, Gmaxx, Gmaxy: real; A: Array of ChildUnit2.Arr;
-begin
+var counter, j2, maxCounter: integer; maxx, maxy, Gmaxx, Gmaxy: real; A: Array of ChildUnit2.PpointsOfGraphic;
+begin  {
 SetLength(A, length(MainForm.pictureA));
 
 For j2 := 0 to length(MainForm.pictureA) - 1 do
@@ -127,7 +127,7 @@ begin
       LineTo(Round(A[j2][counter][3]), Round(Height - A[j2][counter][4]));
     end;
   end;
-end;
+end;  }
 end;
 
 end.

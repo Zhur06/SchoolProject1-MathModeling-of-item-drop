@@ -16,7 +16,6 @@ type
     { Private declarations }
   public
     t: real;
-    A: Array of ChildUnit2.Arr;
     { Public declarations }
   end;
 
@@ -85,13 +84,13 @@ begin
   if maxy > Gmaxy then
     Gmaxy := maxy;
 end
-else Result := ChildForm2.MathOfNoAtmosfereFlight(maxx, maxy, Gmaxx, Gmaxy, t, j2, PaintBox1.Width, maxCounter);
+else Result := ChildForm2.MathOfNoAtmosfereFlight(maxx, maxy, Gmaxx, Gmaxy, t, j2, width, maxCounter);
 end;
 
 //-------------------------Отрисовка--------------------------------------------
 
 procedure TChildForm5.PaintBox1Paint(Sender: TObject);
-var counter, j2, maxCounter: integer; maxx, maxy, Gmaxx, Gmaxy: real;
+var counter, j2, maxCounter: integer; maxx, maxy, Gmaxx, Gmaxy: real; A: Array of ChildUnit2.Arr;
 begin
 SetLength(A, length(MainForm.pictureA));
 
