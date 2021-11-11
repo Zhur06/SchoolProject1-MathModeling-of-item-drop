@@ -124,9 +124,9 @@ object MainForm: TMainForm
           object Label9: TLabel
             Left = 8
             Top = 46
-            Width = 150
+            Width = 144
             Height = 13
-            Caption = #1054#1044#1047' '#1086#1090' 20 '#1076#1086' 10 000 000 '#1084'/'#1089' '
+            Caption = #1054#1044#1047' '#1086#1090' 1 '#1076#1086' 10 000 000 '#1084'/'#1089' '
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
@@ -139,7 +139,7 @@ object MainForm: TMainForm
             Top = 86
             Width = 81
             Height = 13
-            Caption = #1054#1044#1047' '#1086#1090' 0 '#1076#1086' 90'#176
+            Caption = #1054#1044#1047' '#1086#1090' 1 '#1076#1086' 90'#176
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
@@ -847,9 +847,9 @@ object MainForm: TMainForm
           object Label11: TLabel
             Left = 8
             Top = 46
-            Width = 150
+            Width = 144
             Height = 13
-            Caption = #1054#1044#1047' '#1086#1090' 20 '#1076#1086' 10 000 000 '#1084'/'#1089' '
+            Caption = #1054#1044#1047' '#1086#1090' 1 '#1076#1086' 10 000 000 '#1084'/'#1089' '
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
@@ -862,7 +862,7 @@ object MainForm: TMainForm
             Top = 86
             Width = 81
             Height = 13
-            Caption = #1054#1044#1047' '#1086#1090' 0 '#1076#1086' 90'#176
+            Caption = #1054#1044#1047' '#1086#1090' 1 '#1076#1086' 90'#176
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
@@ -873,9 +873,9 @@ object MainForm: TMainForm
           object Label13: TLabel
             Left = 8
             Top = 126
-            Width = 81
+            Width = 83
             Height = 13
-            Caption = #1054#1044#1047' '#1086#1090' 0 '#1076#1086' 90'#176
+            Caption = #1054#1044#1047': '#1073#1086#1083#1077#1077' 0 '#1082#1075
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11

@@ -116,7 +116,7 @@ begin
   al := StrToIntDef(Edit3.Text, 0);
 
   if (V <= 0) or (V > 10000000) then begin ShowMessage('Некорректное значение в поле скорости !' + #13 + 'Допустимые значения: от 1 до 10 000 000 м/с'); EXIT; end;
-  if (al <= 0) or (al > 90) then begin ShowMessage('Некорректное значение в поле угла броска !' + #13 + 'Допустимые значения: от 1 до 90 градусов'); EXIT; end;
+  if (al <= 0) or (al >= 90) then begin ShowMessage('Некорректное значение в поле угла броска !' + #13 + 'Допустимые значения: от 1 до 89 градусов'); EXIT; end;
 
   SetLength(pictureA, length(pictureA) + 1);
   pictureA[length(pictureA) - 1] := Pic.Create;
@@ -163,7 +163,7 @@ begin
   if (V <= 0) or (V > 10000000) then begin ShowMessage('Некорректное значение в поле скорости !' + #13 + 'Допустимые значения: от 1 до 10 000 000 м/с'); EXIT; end;
 
   al := StrToIntDef(Edit3.Text, 0);
-  if (al <= 0) or (al > 90) then begin ShowMessage('Некорректное значение в поле угла броска !' + #13 + 'Допустимые значения: от 1 до 90 градусов'); EXIT; end;
+  if (al <= 0) or (al >= 90) then begin ShowMessage('Некорректное значение в поле угла броска !' + #13 + 'Допустимые значения: от 1 до 89 градусов'); EXIT; end;
 
   if SaveDialog1.Execute then                                                   //Перенос значений в файл
   begin
@@ -187,7 +187,7 @@ begin
   k := StrToIntDef(Edit18.Text, 0);
 
   if (V <= 0) or (V > 10000000) then begin ShowMessage('Некорректное значение в поле скорости !' + #13 + 'Допустимые значения: от 1 до 10 000 000 м/с'); EXIT; end;
-  if (al <= 0) or (al > 90) then begin ShowMessage('Некорректное значение в поле угла броска !' + #13 + 'Допустимые значения: от 1 до 90 градусов'); EXIT; end;
+  if (al <= 0) or (al >= 90) then begin ShowMessage('Некорректное значение в поле угла броска !' + #13 + 'Допустимые значения: от 1 до 89 градусов'); EXIT; end;
   if m <= 0 then begin ShowMessage('Некорректное значение в поле массы !' + #13 + 'Допустимые значения: от 1 кг'); EXIT; end;
   if k <= 0 then begin ShowMessage('Некорректное значение в поле коэфциента сопротивления !' + #13 + 'Допустимые значения: от 1'); EXIT; end;
 
@@ -238,7 +238,7 @@ begin
   if (V <= 0) or (V > 10000000) then begin ShowMessage('Некорректное значение в поле скорости !' + #13 + 'Допустимые значения: от 1 до 10 000 000 м/с'); EXIT; end;
 
   al := StrToIntDef(Edit16.Text, 0);
-  if (al <= 0) or (al > 90) then begin ShowMessage('Некорректное значение в поле угла броска !' + #13 + 'Допустимые значения: от 1 до 90 градусов'); EXIT; end;
+  if (al <= 0) or (al >= 90) then begin ShowMessage('Некорректное значение в поле угла броска !' + #13 + 'Допустимые значения: от 1 до 89 градусов'); EXIT; end;
 
   m := StrToIntDef(Edit17.Text, 0);
   k := StrToIntDef(Edit18.Text, 0);
