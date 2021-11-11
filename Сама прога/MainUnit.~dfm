@@ -2,7 +2,7 @@ object MainForm: TMainForm
   Left = 526
   Top = 163
   Width = 804
-  Height = 847
+  Height = 788
   Caption = #1054#1089#1085#1086#1074#1085#1086#1077' '#1086#1082#1085#1086
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object MainForm: TMainForm
     Left = 0
     Top = 0
     Width = 353
-    Height = 808
+    Height = 749
     Align = alLeft
     TabOrder = 0
     object GroupBox3: TGroupBox
@@ -73,7 +73,7 @@ object MainForm: TMainForm
       Left = 2
       Top = 89
       Width = 349
-      Height = 393
+      Height = 334
       Align = alClient
       MultiLine = True
       TabOrder = 1
@@ -139,7 +139,7 @@ object MainForm: TMainForm
             Top = 86
             Width = 81
             Height = 13
-            Caption = #1054#1044#1047' '#1086#1090' 1 '#1076#1086' 90'#176
+            Caption = #1054#1044#1047' '#1086#1090' 1 '#1076#1086' 89'#176
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
@@ -862,7 +862,7 @@ object MainForm: TMainForm
             Top = 86
             Width = 81
             Height = 13
-            Caption = #1054#1044#1047' '#1086#1090' 1 '#1076#1086' 90'#176
+            Caption = #1054#1044#1047' '#1086#1090' 1 '#1076#1086' 89'#176
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
@@ -4232,7 +4232,7 @@ object MainForm: TMainForm
     end
     object GroupBox10: TGroupBox
       Left = 2
-      Top = 600
+      Top = 541
       Width = 349
       Height = 206
       Align = alBottom
@@ -4308,7 +4308,7 @@ object MainForm: TMainForm
     end
     object GroupBox4: TGroupBox
       Left = 2
-      Top = 482
+      Top = 423
       Width = 349
       Height = 118
       Align = alBottom
@@ -4371,6 +4371,6 @@ object MainForm: TMainForm
   end
   object ColorDialog1: TColorDialog
     Left = 392
-    Top = 64
+    Top = 32
   end
 end

@@ -39,13 +39,13 @@ end;
 function TChildForm5.MathOfAtmosfereFlight(var maxx, maxy, Gmaxx, Gmaxy, t: real; j2, width: integer; var maxCounter: integer): ChildUnit2.Arr;
 var counter: integer; t0: real;
 begin
-if (MainForm.pictureA[j2].k > 0) and (MainForm.pictureA[j2].m > 0) then
+if (MainForm.pictureA5[j2].k > 0) and (MainForm.pictureA5[j2].m > 0) then
 begin
   SetLength(Result, 1);
-  Result[0][1] := MainForm.pictureA[j2].V * cos(MainForm.pictureA[j2].al * pi/180);  //Переводим данную нам скорость на ее проекции на оси плоскости
-  Result[0][2] := MainForm.pictureA[j2].V * sin(MainForm.pictureA[j2].al * pi/180);
+  Result[0][1] := MainForm.pictureA5[j2].V * cos(MainForm.pictureA5[j2].al * pi/180);  //Переводим данную нам скорость на ее проекции на оси плоскости
+  Result[0][2] := MainForm.pictureA5[j2].V * sin(MainForm.pictureA5[j2].al * pi/180);
 
-  t0 := ln(Power((Result[0][2]/(10 * MainForm.pictureA[j2].m)) + 1, (MainForm.pictureA[j2].m/MainForm.pictureA[j2].k)));
+  t0 := ln(Power((Result[0][2]/(10 * MainForm.pictureA5[j2].m)) + 1, (MainForm.pictureA5[j2].m/MainForm.pictureA5[j2].k)));
 
   Result[0][3] := 0;
   Result[0][4] := 0;
@@ -61,11 +61,11 @@ begin
 
     //Рассчет координат нового вектора скорости
 
-    Result[counter][1] := Round(Result[0][1]{Vox}*Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ Vox * e ^ (-(k/m)t) };
-    Result[counter][2] := Round((Result[0][2]{Voy}*Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ Voy * e ^ (-(k/m)t) } - ((10 {g} * MainForm.pictureA[j2].m{m})/MainForm.pictureA[j2].k{k}){gm/k}*(1 - Power(exp(1){e}, -((MainForm.pictureA[j2].k{k} / MainForm.pictureA[j2].m{m}){k/m} * t){-(k/m)*t}){ e ^ (-(k/m)t) }) { 1 - e ^ (-(k/m)t) }) { Voy * e ^ (- (k/m)t) - (gm/k)(1 - e ^  };
+    Result[counter][1] := Round(Result[0][1]{Vox}*Power(exp(1){e}, -(MainForm.pictureA5[j2].k / MainForm.pictureA5[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ Vox * e ^ (-(k/m)t) };
+    Result[counter][2] := Round((Result[0][2]{Voy}*Power(exp(1){e}, -(MainForm.pictureA5[j2].k / MainForm.pictureA5[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ Voy * e ^ (-(k/m)t) } - ((10 {g} * MainForm.pictureA5[j2].m{m})/MainForm.pictureA5[j2].k{k}){gm/k}*(1 - Power(exp(1){e}, -((MainForm.pictureA5[j2].k{k} / MainForm.pictureA5[j2].m{m}){k/m} * t){-(k/m)*t}){ e ^ (-(k/m)t) }) { 1 - e ^ (-(k/m)t) }) { Voy * e ^ (- (k/m)t) - (gm/k)(1 - e ^  };
 
-    Result[counter][3] := Result[0][1]{Vox} * (MainForm.pictureA[j2].m / MainForm.pictureA[j2].k){m/k} * (1 - Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){1 - e ^ (-(k/m)t)};                                           //Рассчет координат тела
-    Result[counter][4] := (MainForm.pictureA[j2].m / MainForm.pictureA[j2].k){m/k} * (((Result[0][2]{Voy} + (MainForm.pictureA[j2].m * 10){mg}/ MainForm.pictureA[j2].k){Voy + mg/k} * (1 - Power(exp(1){e}, -(MainForm.pictureA[j2].k / MainForm.pictureA[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ 1 - e ^ (-(k/m)t) }) - 10 * t);
+    Result[counter][3] := Result[0][1]{Vox} * (MainForm.pictureA5[j2].m / MainForm.pictureA5[j2].k){m/k} * (1 - Power(exp(1){e}, -(MainForm.pictureA5[j2].k / MainForm.pictureA5[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){1 - e ^ (-(k/m)t)};                                           //Рассчет координат тела
+    Result[counter][4] := (MainForm.pictureA5[j2].m / MainForm.pictureA5[j2].k){m/k} * (((Result[0][2]{Voy} + (MainForm.pictureA5[j2].m * 10){mg}/ MainForm.pictureA5[j2].k){Voy + mg/k} * (1 - Power(exp(1){e}, -(MainForm.pictureA5[j2].k / MainForm.pictureA5[j2].m) * t {-(k/m)t}){ e ^ (-(k/m)t) }){ 1 - e ^ (-(k/m)t) }) - 10 * t);
 
   Until Result[counter][4] <= 0;
 
@@ -92,20 +92,20 @@ end;
 procedure TChildForm5.PaintBox1Paint(Sender: TObject);
 var counter, j2, maxCounter: integer; maxx, maxy, Gmaxx, Gmaxy: real; A: Array of ChildUnit2.Arr;
 begin
-SetLength(A, length(MainForm.pictureA));
+SetLength(A, length(MainForm.pictureA5));
 
-For j2 := 0 to length(MainForm.pictureA) - 1 do
+For j2 := 0 to length(MainForm.pictureA5) - 1 do
   A[j2] := MathOfAtmosfereFlight(maxx, maxy, Gmaxx, Gmaxy, t, j2, PaintBox1.Width, maxCounter);
 
 PatBlt(ChildForm5.PaintBox1.Canvas.Handle, 0, 0, ChildForm5.ClientWidth, ChildForm5.ClientHeight, WHITENESS);
 
-For j2 := 0 to length(MainForm.pictureA) - 1 do
+For j2 := 0 to length(MainForm.pictureA5) - 1 do
 begin
   if t > 1 then
   With PaintBox1, Canvas do
   begin
     Brush.Color := clWhite;                                                     //Установка цвета кисти
-    Pen.Color := MainForm.pictureA[j2].color;
+    Pen.Color := MainForm.pictureA5[j2].color;
     Pen.Width := 1;
     Pen.Style := psSolid;
 

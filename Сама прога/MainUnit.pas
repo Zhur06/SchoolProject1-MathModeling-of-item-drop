@@ -79,7 +79,7 @@ type
     procedure ReadFromFile5();
     procedure SaveToFile5();
   public
-    pictureA: array of Pic;
+    pictureA, pictureA5: array of Pic;
     CF2, CF5: integer;
     ChoozedColor: TColor;
     { Public declarations }
@@ -191,15 +191,15 @@ begin
   if m <= 0 then begin ShowMessage('Некорректное значение в поле массы !' + #13 + 'Допустимые значения: от 1 кг'); EXIT; end;
   if k <= 0 then begin ShowMessage('Некорректное значение в поле коэфциента сопротивления !' + #13 + 'Допустимые значения: от 1'); EXIT; end;
 
-  SetLength(pictureA, length(pictureA) + 1);
-  pictureA[length(pictureA) - 1] := Pic.Create;
+  SetLength(pictureA5, length(pictureA5) + 1);
+  pictureA5[length(pictureA5) - 1] := Pic.Create;
 
-  pictureA[length(pictureA) - 1].V := V;
-  pictureA[length(pictureA) - 1].al := al;
-  pictureA[length(pictureA) - 1].m := m;
-  pictureA[length(pictureA) - 1].k := k;
+  pictureA5[length(pictureA5) - 1].V := V;
+  pictureA5[length(pictureA5) - 1].al := al;
+  pictureA5[length(pictureA5) - 1].m := m;
+  pictureA5[length(pictureA5) - 1].k := k;
 
-  pictureA[length(pictureA) - 1].Color := ChoozedColor;
+  pictureA5[length(pictureA5) - 1].Color := ChoozedColor;
 
   if CF5 = 0 then
   begin
@@ -316,6 +316,7 @@ end;
 procedure TMainForm.ClearBtnClick(Sender: TObject);
 begin
   pictureA := nil;
+  pictureA5 := nil;
   RePaint;
 end;
 

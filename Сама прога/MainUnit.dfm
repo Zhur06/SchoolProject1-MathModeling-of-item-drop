@@ -4371,6 +4371,6 @@ object MainForm: TMainForm
   end
   object ColorDialog1: TColorDialog
     Left = 392
-    Top = 64
+    Top = 32
   end
 end
