@@ -128,6 +128,7 @@ begin
     end;
   end;
 end;
+A := 0;
 end;
 
 end.

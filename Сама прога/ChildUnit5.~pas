@@ -45,7 +45,7 @@ begin
   Result[0][1] := MainForm.pictureA5[j2].V * cos(MainForm.pictureA5[j2].al * pi/180);  //Переводим данную нам скорость на ее проекции на оси плоскости
   Result[0][2] := MainForm.pictureA5[j2].V * sin(MainForm.pictureA5[j2].al * pi/180);
 
-  t0 := ln(Power((Result[0][2]/(10 * MainForm.pictureA5[j2].m)) + 1, (MainForm.pictureA5[j2].m/MainForm.pictureA[j2].k)));
+  t0 := ln(Power((Result[0][2]/(10 * MainForm.pictureA5[j2].m)) + 1, (MainForm.pictureA5[j2].m/MainForm.pictureA5[j2].k)));
 
   Result[0][3] := 0;
   Result[0][4] := 0;

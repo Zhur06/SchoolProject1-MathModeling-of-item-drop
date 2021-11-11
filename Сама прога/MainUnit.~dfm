@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 526
-  Top = 163
+  Left = 448
+  Top = 42
   Width = 804
   Height = 788
   Caption = #1054#1089#1085#1086#1074#1085#1086#1077' '#1086#1082#1085#1086
@@ -4293,6 +4293,8 @@ object MainForm: TMainForm
         Height = 17
         Alignment = taLeftJustify
         Caption = #1052#1072#1089#1096#1090#1072#1073#1080#1088#1086#1074#1072#1085#1080#1077
+        Checked = True
+        State = cbChecked
         TabOrder = 3
         OnClick = ScaleCBClick
       end

@@ -11,6 +11,13 @@ type
   public
     v: integer;
     al: integer;
+    color: TColor;
+  end;
+
+  Pic5 = class
+  public
+    v: integer;
+    al: integer;
     m: integer;
     k: integer;
     color: TColor;
@@ -79,7 +86,7 @@ type
     procedure ReadFromFile5();
     procedure SaveToFile5();
   public
-    pictureA, pictureA5: array of Pic;
+    pictureA: array of Pic; pictureA5: array of Pic5;
     CF2, CF5: integer;
     ChoozedColor: TColor;
     { Public declarations }
@@ -123,6 +130,7 @@ begin
 
   pictureA[length(pictureA) - 1].V := V;
   pictureA[length(pictureA) - 1].al := al;
+
 
   pictureA[length(pictureA) - 1].Color := ChoozedColor;
 
@@ -192,7 +200,7 @@ begin
   if k <= 0 then begin ShowMessage('Некорректное значение в поле коэфциента сопротивления !' + #13 + 'Допустимые значения: от 1'); EXIT; end;
 
   SetLength(pictureA5, length(pictureA5) + 1);
-  pictureA5[length(pictureA5) - 1] := Pic.Create;
+  pictureA5[length(pictureA5) - 1] := Pic5.Create;
 
   pictureA5[length(pictureA5) - 1].V := V;
   pictureA5[length(pictureA5) - 1].al := al;

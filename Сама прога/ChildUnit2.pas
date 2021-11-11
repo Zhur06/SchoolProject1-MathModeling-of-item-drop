@@ -90,12 +90,10 @@ end;
 procedure TChildForm2.PaintBox1Paint(Sender: TObject);
 var counter, j2, maxCounter: integer; maxx, maxy, Gmaxx, Gmaxy: real; A: Array of Arr;
 begin
-
 SetLength(A, length(MainForm.pictureA));
 
 For j2 := 0 to length(MainForm.pictureA) - 1 do
   A[j2] := MathOfNoAtmosfereFlight(maxx, maxy, Gmaxx, Gmaxy, t, j2, PaintBox1.Width, maxCounter);
-
 PatBlt(ChildForm2.PaintBox1.Canvas.Handle, 0, 0, ChildForm2.ClientWidth, ChildForm2.ClientHeight, WHITENESS);
 For j2 := 0 to length(MainForm.pictureA) - 1 do
 begin
@@ -108,7 +106,6 @@ begin
     Pen.Style := psSolid;
 
     MoveTo(0, Height);                                                          //Перемещение начала линии в левый нижний угол
-
   if MainForm.ScaleCB.Checked then
     For counter := 0 to maxCounter do
     begin
@@ -118,11 +115,14 @@ begin
         LineTo(Round((Height / Gmaxx) * A[j2][counter][3]), Round(Height - ((Height / Gmaxx) *  A[j2][counter][4])));
     end
   else
-    For counter := 0 to maxCounter do
+    For counter := 0 to length(A[j2]) - 1 do
     begin
       LineTo(Round(A[j2][counter][3]), Round(Height - A[j2][counter][4]));
     end;
   end;
-end;  
+end;
+
+A := nil;
+
 end;
 end.

@@ -42,6 +42,7 @@ end;
 function TChildForm2.MathOfNoAtmosfereFlight(var maxx, maxy, Gmaxx, Gmaxy, t: real; j2, width: integer; var maxCounter: integer): Arr;
 var counter: integer; t0: real;
 begin
+try
   SetLength(Result, 1);
   Result[0][1] := MainForm.pictureA[j2].V * cos(MainForm.pictureA[j2].al * pi/180);                            //Переводим данную нам скорость на ее проекции на оси плоскости
   Result[0][2] := MainForm.pictureA[j2].V * sin(MainForm.pictureA[j2].al * pi/180);
@@ -83,6 +84,9 @@ begin
     Gmaxx := maxx;
   if maxy > Gmaxy then
     Gmaxy := maxy;
+except
+  ShowMessage('ERROR');
+end;
 end;
 
 //-------------------------Отрисовка--------------------------------------------
@@ -90,12 +94,19 @@ end;
 procedure TChildForm2.PaintBox1Paint(Sender: TObject);
 var counter, j2, maxCounter: integer; maxx, maxy, Gmaxx, Gmaxy: real; A: Array of Arr;
 begin
-
-SetLength(A, length(MainForm.pictureA));
+try
+  SetLength(A, length(MainForm.pictureA));
+except
+  ShowMessage('ERROR');
+end;
 
 For j2 := 0 to length(MainForm.pictureA) - 1 do
-  A[j2] := MathOfNoAtmosfereFlight(maxx, maxy, Gmaxx, Gmaxy, t, j2, PaintBox1.Width, maxCounter);
-
+  try
+    A[j2] := MathOfNoAtmosfereFlight(maxx, maxy, Gmaxx, Gmaxy, t, j2, PaintBox1.Width, maxCounter);
+  except
+    ShowMessage('ERROR');
+  end;
+try
 PatBlt(ChildForm2.PaintBox1.Canvas.Handle, 0, 0, ChildForm2.ClientWidth, ChildForm2.ClientHeight, WHITENESS);
 For j2 := 0 to length(MainForm.pictureA) - 1 do
 begin
@@ -108,7 +119,7 @@ begin
     Pen.Style := psSolid;
 
     MoveTo(0, Height);                                                          //Перемещение начала линии в левый нижний угол
-
+    try
   if MainForm.ScaleCB.Checked then
     For counter := 0 to maxCounter do
     begin
@@ -118,11 +129,24 @@ begin
         LineTo(Round((Height / Gmaxx) * A[j2][counter][3]), Round(Height - ((Height / Gmaxx) *  A[j2][counter][4])));
     end
   else
-    For counter := 0 to maxCounter do
+    For counter := 0 to length(A[j2]) - 1 do
     begin
-      LineTo(Round(A[j2][counter][3]), Round(Height - A[j2][counter][4]));
+      try
+        LineTo(Round(A[j2][counter][3]), Round(Height - A[j2][counter][4]));
+      except
+        ShowMessage('ERROR');
+      end;
+    end;
+    except
+      ShowMessage('ERROR');
     end;
   end;
-end;  
+end;
+except
+  ShowMessage('ERROR');
+end;
+
+A := nil;
+
 end;
 end.
